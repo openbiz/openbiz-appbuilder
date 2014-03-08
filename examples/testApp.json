@@ -4,10 +4,15 @@
 	"description":"It is a test application",
 	"version": "1.0.0",
     "homepage": "http://github.com/openbiz/openbiz-test",
+    "license": "BSD",
+    "author": [
+        "Jixian Wang <jixian@openbiz.me>",
+        "Rocky Swen <rocky@openbiz.me>"
+    ],
 	"roles":[
 		{
 			"name":"test-manager",
-			"permission":[
+			"permissions":[
 				"test-info-access",
 				"test-info-manage",
 				"test-menu-access"
@@ -16,7 +21,7 @@
 		},
 		{
 			"name":"test-access",
-			"permission":[
+			"permissions":[
 				"test-info-access",	
 				"test-menu-access"			
 			],

@@ -8,7 +8,8 @@ var fs = require('fs');
 var basedir = process.cwd();
 
 if(typeof options.config!='undefined' && fs.existsSync(options.config)){
-	var config = require(options.config);
+	var config = require(options.config);	
+	config.output = options.output;
 	switch(config.type.toLowerCase()){
 		case "application":
 			require("../lib/builder/ApplicationBuilder").build(config);
