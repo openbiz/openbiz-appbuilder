@@ -1,6 +1,7 @@
 {
 	"type":"application",
 	"name":"test",
+	"displayName":"Test App",
 	"description":"It is a test application",
 	"version": "1.0.0",
     "homepage": "http://github.com/openbiz/openbiz-test",
@@ -12,6 +13,7 @@
 	"roles":[
 		{
 			"name":"test-manager",
+			"displayName":"Test Manager",
 			"permissions":[
 				"test-info-access",
 				"test-info-manage",
@@ -20,14 +22,15 @@
 			"isDefault":false
 		},
 		{
-			"name":"test-access",
+			"name":"test-user",
+			"displayName":"Test User",
 			"permissions":[
 				"test-info-access",	
 				"test-menu-access"			
 			],
 			"isDefault":true
 		}],
-	"language":["zh-cn","en"],
+	"languages":["zh-cn","en"],
 	"menu":{
 		"permission":"test-menu-access"
 	}

@@ -15,7 +15,8 @@
         
     ],
     "dependencies": {
-        "nopt":"~2.2.0"
+        "nopt":"~2.2.0",
+        "jade":"~1.3.0"
     },
     "devDependencies": {        
     },
