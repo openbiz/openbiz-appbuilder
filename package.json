@@ -1,0 +1,39 @@
+{
+    "name": "openbiz-appbuilder",
+    "description": "Openbiz Appbuilder, Automatic generate openbiz application ",
+    "version": "1.0.0",
+    "homepage": "http://github.com/openbiz/openbiz",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/openbiz/openbiz-appbuilder.git"
+    },
+    "author": [
+        "Jixian Wang <jixian@openbiz.me>",
+        "Rocky Swen <rocky@openbiz.me>"
+    ],
+    "contributors": [
+        
+    ],
+    "dependencies": {
+        "nopt":"~2.2.0"
+    },
+    "devDependencies": {        
+    },
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "readmeFilename": "README.md",
+    "bugs": {
+        "url": "https://github.com/openbiz/openbiz-appbuilder/issues"
+    },
+    "gitHead": "0b2c62c85ac152c1517ca0681d1f018daa3f4c6b",    
+    "keywords": [
+        "openbiz",
+        "openbiz-ui",
+        "openbiz-appbuilder",
+        "client framework",
+        "framework",
+        "cubi"
+    ],
+    "license": "BSD"
+}

@@ -1,0 +1,29 @@
+{
+	"type":"application",
+	"name":"test",
+	"description":"It is a test application",
+	"version": "1.0.0",
+    "homepage": "http://github.com/openbiz/openbiz-test",
+	"roles":[
+		{
+			"name":"test-manager",
+			"permission":[
+				"test-info-access",
+				"test-info-manage",
+				"test-menu-access"
+			],
+			"isDefault":false
+		},
+		{
+			"name":"test-access",
+			"permission":[
+				"test-info-access",	
+				"test-menu-access"			
+			],
+			"isDefault":true
+		}],
+	"language":["zh-cn","en"],
+	"menu":{
+		"permission":"test-menu-access"
+	}
+}
