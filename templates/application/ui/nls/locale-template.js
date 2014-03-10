@@ -1,2 +1,2 @@
 "use strict";
-define(DEFAULT_LOCALE);
+define({{DEFAULT_LOCALE}});
