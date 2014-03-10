@@ -10,9 +10,7 @@ define([ 'i18n!./nls/locale'
             name: 'APP_NAME',
             appUrl: null,
             baseUrl: null,
-            modules: {
-                
-            },
+            modules: { /*MODULE_NAME_LIST_PAIRE*/ },
             init: function () {
                 for (var i in this.modules) {
                     this.modules[i].init();

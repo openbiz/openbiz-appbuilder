@@ -1,4 +1,170 @@
 {
-	"name":"test",
-	
+	"type":"module",
+	"name":"testmodule",
+	"displayName":"Test App",
+	"models":[{
+		"name": "Test",
+		"collection": "test_testmodule_Test",
+		"schema": {
+	        "name": {
+	        	"type": "String",
+	        	"required": true,
+	        	"unique": true
+	        },
+	        "info": {
+		        "website": {
+		        	"type": "String"
+		        },
+	            "address": {            
+	                "country": {
+		        		"type": "String"
+		        	},
+	                "province": {
+		        		"type": "String"
+		        	},
+	                "city": {
+		        		"type": "String"
+		        	},
+	                "street": {
+		        		"type": "String"
+		        	},
+	                "zipcode": {
+		        		"type": "String"
+		        	}
+	            },
+	            "phone": {
+	                "countryCode": {
+		        		"type": "String"
+		        	},
+	                "areaCode": {
+		        		"type": "Number"
+		        	},
+	                "number": {
+		        		"type": "Number"
+		        	}
+	            }
+			}
+		}
+	}],
+
+	"controllers":[
+		{
+			"name":"testController",
+			"model":"Test",
+			"actions":["create","update","delete","getItem","getCollection"]
+		}
+	],
+
+	"routes":{
+			"post /test" 	: "testController.create",
+			"put /test" 	: "testController.update",
+			"delete /test" 	: "testController.delete",
+			"get /test" 	: "testController.getCollection",
+			"get /test/:id" : "testController.getItem"
+	},
+
+	"views":[
+		{
+			"name":"testListView",
+			"displayName":"Test Management",
+			"description":"description",
+			"type":"gridForm",
+			"model":"Test",
+			"url":"/tests",
+			"columns":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":""
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs"
+				}
+			],
+			"paginator":true,
+			"filter":true
+		},
+		{
+			"name":"testEditView",
+			"displayName":"Test Edit",
+			"type":"editForm",
+			"model":"Test",
+			"url":"/tests/:id/edit",
+			"columns":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":"",				
+					"validation":""
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs",
+					"validation":""
+				}
+			]
+		},
+		{
+			"name":"testDetailView",
+			"displayName":"Test Detail",
+			"type":"detailForm",
+			"url":"/tests/:id",
+			"model":"Test",
+			"columns":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":""
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs"
+				}
+			]		
+		},
+		{
+			"name":"testNewView",
+			"displayName":"Create a Test Record",
+			"type":"addForm",
+			"model":"Test",
+			"url":"/tests/new",
+			"columns":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":""			
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs"
+				}
+			]
+		}
+	],
+
+	"roles":[
+		{
+			"name":"test-manager",
+			"displayName":"Test Manager",
+			"permissions":[
+				"test-info-access",
+				"test-info-manage",
+				"test-menu-access"
+			],
+			"isDefault":false
+		},
+		{
+			"name":"test-user",
+			"displayName":"Test User",
+			"permissions":[
+				"test-info-access",	
+				"test-menu-access"			
+			],
+			"isDefault":true
+		}]
 }
