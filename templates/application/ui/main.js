@@ -7,7 +7,7 @@ define([ 'i18n!./nls/locale'
             /*MODULE_NAME_LIST_END*/
         ) {
         return openbiz.Application.extend({
-            name: 'APP_NAME',
+            name: '{{APP_NAME}}',
             appUrl: null,
             baseUrl: null,
             modules: { /*MODULE_NAME_LIST_PAIRE*/ },
