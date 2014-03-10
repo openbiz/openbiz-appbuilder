@@ -60,11 +60,26 @@
 	],
 
 	"routes":{
-			"post /test" 	: "TestController.create",
-			"put /test" 	: "TestController.update",
-			"delete /test" 	: "TestController.delete",
-			"get /test" 	: "TestController.getCollection",
-			"get /test/:id" : "TestController.getItem"
+			"post /test" 	: { 
+				"permissions": ["test-info-manage"],
+				"action" 	: "TestController.create" 
+			},
+			"put /test" 	: { 
+				"permissions": ["test-info-manage"],
+				"action" 	: "TestController.update" 
+			},
+			"delete /test" 	: { 
+				"permissions": ["test-info-manage"],
+				"action" 	: "TestController.delete" 
+			},
+			"get /test" 	: { 
+				"permissions": ["test-info-access"],
+				"action" 	: "TestController.getCollection" 
+			},
+			"get /test/:id" : { 
+				"permissions": ["test-info-access"],
+				"action" 	: "TestController.getItem" 
+			}
 	},
 
 	"views":[
