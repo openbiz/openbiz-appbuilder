@@ -1,0 +1,199 @@
+{
+	"type":"module",
+	"name":"planmodule",
+	"displayName":"Product Plan",
+	"models":[{
+		"name": "Plan",
+		"collection": "product_planmodule_Plan",
+		"schema": {
+	        "name": {
+	        	"type": "String",
+	        	"required": true,
+	        	"unique": true
+	        },
+	        "info": {
+		        "bandno": {
+		        	"type": "String"
+		        },
+                "brand": {
+                    "type": "String"
+                },
+                "year": {
+                    "type": "String"
+                },
+                "quarter": {
+                    "type": "String"
+                },
+                "topic": {
+                    "type": "String"
+                },
+                "publicDate": {
+                    "type": "Date"
+                },
+                "researchSubmitDate": {
+                    "type": "Date"
+                },
+                "headSubmitDate": {
+                    "type": "Date"
+                },
+                "tailSubmitDate": {
+                    "type": "Date"
+                },
+
+                "draftSubmitDate":{
+                    "type": "Date"
+                },
+                "patternSubmitDate":{
+                    "type": "Date"
+                },
+                "materialSubmitDate":{
+                    "type": "Date"
+                },
+                "sampleSubmitDate":{
+                    "type": "Date"
+                },
+                "photoSubmitDate":{
+                    "type": "Date"
+                },
+                "fileSubmitDate":{
+                    "type": "Date"
+                },
+
+                "styleCategoryPlan":[{
+                    "styleCategory":{"type":"String"},
+                    "planCategoryCount":{"type":"Number"},
+                    "planQuantity":{"type":"Number"},
+                    "planUnitPrice":{"type":"Number"},
+                    "planAmount":{"type":"Number"},
+                    "oldCategoryCount":{"type":"Number"},
+                    "oldQuantity":{"type":"Number"},
+                    "newCategoryCount":{"type":"Number"},
+                    "newQuantity":{"type":"Number"},
+                    "newUnitPrice":{"type":"Number"},
+                    "newAmount":{"type":"String"}
+                }]
+			}
+		}
+	}],
+
+	"controllers":[
+		{
+			"name":"planController",
+			"model":"Plan",
+			"actions":["create","update","delete","getItem","getCollection"]
+		}
+	],
+
+	"routes":{
+			"post /plan" 	: "planController.create",
+			"put /plan" 	: "planController.update",
+			"delete /plan" 	: "planController.delete",
+			"get /plan" 	: "planController.getCollection",
+			"get /plan/:id" : "planController.getItem"
+	},
+
+	"views":[
+		{
+			"name":"planListView",
+			"displayName":"Product Plan",
+			"description":"description",
+			"type":"gridForm",
+			"model":"Plan",
+			"url":"/plan",
+			"columns":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":""
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs"
+				}
+			],
+			"paginator":true,
+			"filter":true
+		},
+		{
+			"name":"planEditView",
+			"displayName":"Product Plan Edit",
+			"type":"editForm",
+			"model":"Test",
+			"url":"/plans/:id/edit",
+			"columns":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":"",				
+					"validation":""
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs",
+					"validation":""
+				}
+			]
+		},
+		{
+			"name":"planDetailView",
+			"displayName":"Test Detail",
+			"type":"detailForm",
+			"url":"/plans/:id",
+			"model":"Plan",
+			"columns":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":""
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs"
+				}
+			]		
+		},
+		{
+			"name":"planNewView",
+			"displayName":"Create a Test Record",
+			"type":"addForm",
+			"model":"Plan",
+			"url":"/plans/new",
+			"columns":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":""			
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs"
+				}
+			]
+		}
+	],
+
+	"roles":[
+		{
+			"name":"dss-product-manager",
+			"displayName":"Product Manager",
+			"permissions":[
+				"dss-product-plan-access",
+				"dss-product-plan-manage",
+				"plan-menu-access"
+			],
+			"isDefault":false
+		},
+		{
+			"name":"dss-product-user",
+			"displayName":"Product User",
+			"permissions":[
+				"dss-product-plan-access",
+				"plan-menu-access"
+			],
+			"isDefault":true
+		}]
+}
