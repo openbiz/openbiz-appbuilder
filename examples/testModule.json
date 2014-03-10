@@ -1,10 +1,14 @@
 {
 	"type":"module",
-	"name":"testmodule",
+	"app":"test",
+	"name":"firstmodule",
 	"displayName":"Test App",
 	"models":[{
 		"name": "Test",
 		"collection": "test_testmodule_Test",
+		"resourceUri": "/test",
+		"serverSide": true,
+		"clientSide": true,
 		"schema": {
 	        "name": {
 	        	"type": "String",
@@ -49,18 +53,18 @@
 
 	"controllers":[
 		{
-			"name":"testController",
+			"name":"TestController",
 			"model":"Test",
 			"actions":["create","update","delete","getItem","getCollection"]
 		}
 	],
 
 	"routes":{
-			"post /test" 	: "testController.create",
-			"put /test" 	: "testController.update",
-			"delete /test" 	: "testController.delete",
-			"get /test" 	: "testController.getCollection",
-			"get /test/:id" : "testController.getItem"
+			"post /test" 	: "TestController.create",
+			"put /test" 	: "TestController.update",
+			"delete /test" 	: "TestController.delete",
+			"get /test" 	: "TestController.getCollection",
+			"get /test/:id" : "TestController.getItem"
 	},
 
 	"views":[
