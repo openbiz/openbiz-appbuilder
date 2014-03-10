@@ -16,7 +16,8 @@
     ],
     "dependencies": {
         "nopt":"~2.2.0",
-        "jade":"~1.3.0"
+        "jade":"~1.3.0",
+        "underscore":"~1.6.0",
     },
     "devDependencies": {        
     },
