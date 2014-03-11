@@ -10,7 +10,7 @@ module.exports = function(openbiz)
         _ui : path.join(path.dirname(__dirname),'ui'),
         openbiz: openbiz,
         defaults:{
-        	creatorRoles:[DEFAULT_ROLES]
+        	creatorRoles:{{DEFAULT_ROLES}}
         }
     });
     return application;
