@@ -55,7 +55,8 @@
 		{
 			"name":"TestController",
 			"model":"Test",
-			"actions":["create","update","delete","getItem","getCollection"]
+			"type":"ModelController",
+			"actions":["customFunction"]
 		}
 	],
 
@@ -64,17 +65,17 @@
 				"permissions": ["test-info-manage"],
 				"action" 	: "TestController.create" 
 			},
-			"put /test" 	: { 
-				"permissions": ["test-info-manage"],
-				"action" 	: "TestController.update" 
-			},
-			"delete /test" 	: { 
-				"permissions": ["test-info-manage"],
-				"action" 	: "TestController.delete" 
-			},
 			"get /test" 	: { 
 				"permissions": ["test-info-access"],
 				"action" 	: "TestController.getCollection" 
+			},
+			"put /test/:id" 	: { 
+				"permissions": ["test-info-manage"],
+				"action" 	: "TestController.update" 
+			},
+			"delete /test/:id" 	: { 
+				"permissions": ["test-info-manage"],
+				"action" 	: "TestController.delete" 
 			},
 			"get /test/:id" : { 
 				"permissions": ["test-info-access"],
