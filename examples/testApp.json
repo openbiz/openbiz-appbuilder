@@ -33,5 +33,10 @@
 	"languages":["zh-cn","en"],
 	"menu":{
 		"permission":"test-menu-access"
+	},
+	"deploy":
+	{
+		"backend":"/api/test",
+		"frontend":"/apps/test"
 	}
 }

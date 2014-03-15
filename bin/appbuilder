@@ -10,6 +10,7 @@ var basedir = process.cwd();
 if(typeof options.config!='undefined' && fs.existsSync(options.config)){
 	var config = require(options.config);	
 	config.output = options.output;
+	config.appFile = options.appfile;
 	switch(config.type.toLowerCase()){
 		case "application":
 			require("../lib/builder/ApplicationBuilder").build(config);
