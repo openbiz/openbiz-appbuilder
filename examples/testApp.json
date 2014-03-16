@@ -37,6 +37,7 @@
 	"deploy":
 	{
 		"backend":"/api/test",
-		"frontend":"/apps/test"
+		"frontend":"/apps/test",
+		"bootstrapFile":"/public/website/app-init.js"
 	}
 }
