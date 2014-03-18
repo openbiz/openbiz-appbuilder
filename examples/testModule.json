@@ -6,9 +6,7 @@
 	"models":[{
 		"name": "Test",
 		"collection": "test_testmodule_Test",
-		"resourceUri": "/test",
-		"serverSide": true,
-		"clientSide": true,
+		"resourceUri": "/test",		
 		"schema": {
 	        "name": {
 	        	"type": "String",
@@ -48,6 +46,10 @@
 		        	}
 	            }
 			}
+		},
+		"action":{
+			"statics":["statFunc1","statFunc2"],
+			"methods":["dynaFunc1","dynaFunc2"]
 		}
 	}],
 
@@ -56,42 +58,160 @@
 			"name":"TestController",
 			"model":"Test",
 			"type":"ModelController",
-			"actions":["customFunction"]
+			"actions":["customFunction"]		
 		}
 	],
 
 	"routes":{
-			"post /test" 	: { 
-				"permissions": ["test-info-manage"],
-				"action" 	: "TestController.create" 
-			},
-			"get /test" 	: { 
-				"permissions": ["test-info-access"],
-				"action" 	: "TestController.getCollection" 
-			},
-			"put /test/:id" 	: { 
-				"permissions": ["test-info-manage"],
-				"action" 	: "TestController.update" 
-			},
-			"delete /test/:id" 	: { 
-				"permissions": ["test-info-manage"],
-				"action" 	: "TestController.delete" 
-			},
-			"get /test/:id" : { 
-				"permissions": ["test-info-access"],
-				"action" 	: "TestController.getItem" 
-			}
+		"post /test" 	: { 
+			"permissions": ["test-info-manage"],
+			"action" 	: "TestController.create" 
+		},
+		"get /test" 	: { 
+			"permissions": ["test-info-access"],
+			"action" 	: "TestController.getCollection" 
+		},
+		"put /test/:id" 	: { 
+			"permissions": ["test-info-manage"],
+			"action" 	: "TestController.update" 
+		},
+		"delete /test/:id" 	: { 
+			"permissions": ["test-info-manage"],
+			"action" 	: "TestController.delete" 
+		},
+		"get /test/:id" : { 
+			"permissions": ["test-info-access"],
+			"action" 	: "TestController.getItem" 
+		}
 	},
+
+	"clientModels": [
+		{
+			"resourceUri":"/test",
+			"itemModel":{
+				"name":"Test",
+				"actions":["testAction","testAction2"]
+			},
+			"collectionModel":{
+				"name":"TestCollection",
+				"actions":["testCollectionAction","testCollectionAction2"]
+			}			
+		}
+	],	
 
 	"views":[
 		{
 			"name":"testListView",
 			"displayName":"Test Management",
 			"description":"description",
+			"permission":"test-info-access"	,
 			"type":"gridForm",
-			"model":"Test",
+			"model":"TestCollection",
 			"url":"/tests",
-			"columns":[
+			"fields":[
+				{
+					"name":"name",
+					"field":"name",
+					"displayName":"Name",
+					"className":"",
+					"type":"link",
+					"url":"/tests/:id"
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"displayName":"website",
+					"className":"hidden-xs"
+				},
+				{
+					"name":"actions",
+					"displayName":"Action",
+					"type":"recordActions",
+					"permission":"test-info-manage"	
+				}
+			],
+			"paginator":true,
+			"filter":true,
+			"recordActions":[
+				{
+					"name":"delete",
+					"displayName":"Delete",
+					"type":"button",
+					"event":"click",
+					"action":"deleteRecord()",
+					"permission":"test-info-manage"	
+				}
+			],
+			"actions":[
+				{
+					"name":"new",
+					"type":"link",
+					"url":"/tests/new",
+					"permission":"test-info-manage"	
+				}
+			]
+		},
+		{
+			"name":"testEditView",
+			"displayName":"Test Edit",
+			"type":"editForm",
+			"permission":"test-info-manage"	,
+			"model":"Test",
+			"url":"/tests/:id/edit",
+			"fields":[
+				{
+					"name":"name",
+					"field":"name",
+					"className":"",				
+					"validation":"",
+					"type":"text"
+				},
+				{
+					"name":"website",
+					"field":"info.website",
+					"className":"hidden-xs",
+					"validation":"",
+					"type":"textarea"
+				},
+				{
+					"name":"something",
+					"field":"info.something",
+					"className":"",
+					"validation":"",
+					"type":"select",
+					"dataSource":{
+						"type":"model",
+						"model":"OtherCollection",
+						"path":"account.brands",
+						"key":"id",
+						"value":"displayName"
+					}
+				}
+			],
+			"actions":[
+				{
+					"name":"saveRecord",
+					"className":"",
+					"type":"button",
+					"event":"click",
+					"action":"saveRecord()",
+					"gotoURL":"/tests/:id"
+				},
+				{
+					"name":"cancel",
+					"className":"",
+					"type":"link",
+					"url":"/tests"
+				}
+			]
+		},
+		{
+			"name":"testDetailView",
+			"displayName":"Test Detail",
+			"type":"detailForm",
+			"url":"/tests/:id",
+			"model":"Test",
+			"fields":[
 				{
 					"name":"name",
 					"field":"name",
@@ -103,46 +223,20 @@
 					"className":"hidden-xs"
 				}
 			],
-			"paginator":true,
-			"filter":true
-		},
-		{
-			"name":"testEditView",
-			"displayName":"Test Edit",
-			"type":"editForm",
-			"model":"Test",
-			"url":"/tests/:id/edit",
-			"columns":[
+			"actions":[
 				{
-					"name":"name",
-					"field":"name",
-					"className":"",				
-					"validation":""
+					"name":"deleteRecord",
+					"className":"",
+					"type":"button",
+					"event":"click",
+					"action":"saveRecord()",
+					"gotoURL":"/tests/:id"
 				},
 				{
-					"name":"website",
-					"field":"info.website",
-					"className":"hidden-xs",
-					"validation":""
-				}
-			]
-		},
-		{
-			"name":"testDetailView",
-			"displayName":"Test Detail",
-			"type":"detailForm",
-			"url":"/tests/:id",
-			"model":"Test",
-			"columns":[
-				{
-					"name":"name",
-					"field":"name",
-					"className":""
-				},
-				{
-					"name":"website",
-					"field":"info.website",
-					"className":"hidden-xs"
+					"name":"back",
+					"className":"",
+					"type":"link",
+					"url":"/tests"
 				}
 			]		
 		},
@@ -152,7 +246,7 @@
 			"type":"addForm",
 			"model":"Test",
 			"url":"/tests/new",
-			"columns":[
+			"fields":[
 				{
 					"name":"name",
 					"field":"name",
