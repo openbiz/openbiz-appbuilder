@@ -59,6 +59,13 @@
 			"model":"Test",
 			"type":"ModelController",
 			"actions":["customFunction"]		
+		},
+		{
+			"name":"TestSubController",
+			"model":"Test",
+			"path":"info",
+			"type":"ModelSubdocController",
+			"actions":["customSubFunction"]		
 		}
 	],
 

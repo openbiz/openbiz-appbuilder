@@ -1,8 +1,9 @@
 'use strict';
-module.exports = function(app){	{% if (BASE_CONTROLLER=='ModelController'){ %}	
+module.exports = function(app){	{% if (BASE_CONTROLLER=='ModelController' || BASE_CONTROLLER=='ModelSubdocController'  ){ %}	
 	var name = require('path').basename(module.filename,'.js');
-	return app.openbiz.ModelController(app,name).extend({		
+	return app.openbiz.{{BASE_CONTROLLER}}(app,name).extend({		
 		_model: "{{MODEL_NAME}}",
+		{% if (BASE_CONTROLLER=='ModelSubdocController'){ %}_path: "{{MODEL_PATH}}",{% } %}
 		//trigger method for data collection get
 		//The fetched record is at req.record
 		beforeGetItem: function(req, res){},
