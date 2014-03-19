@@ -192,9 +192,8 @@ define(['',''],
 					collection: this.collection,
 					className: 'backgrid table table-striped table-bordered text-center',
 					emptyText: 'emptyText '
-				})
+				});
 				$(this.el).find('.data-grid').append(grid.render().el);
-
 				if(this._getPaginatorConfig()){
 					var paginator = new Backgrid.Extension.Paginator({
 						windowSize: 10,
@@ -226,14 +225,14 @@ define(['',''],
 			_getPaginatorConfig:function(){
 				return this._paginatorConfig;
 			},
-			showRecordAddView:function(event){
-				event.preventDefault();
-			},
-			showRecordEidtView:function(event){
-				event.preventDefault();
-			},
-			showRecordDeleteConfirm:function(event){
-				event.preventDefault();
-			}
+//			showRecordAddView:function(event){
+//				event.preventDefault();
+//			},
+//			showRecordEidtView:function(event){
+//				event.preventDefault();
+//			},
+//			showRecordDeleteConfirm:function(event){
+//				event.preventDefault();
+//			}
 		});
 	});
