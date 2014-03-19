@@ -6,7 +6,6 @@
 	"models":[{
 		"name": "Test",
 		"collection": "test_testmodule_Test",
-		"resourceUri": "/test",		
 		"schema": {
 	        "name": {
 	        	"type": "String",
