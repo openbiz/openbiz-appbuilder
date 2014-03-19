@@ -1,10 +1,10 @@
 {
 	"type":"module",
-	"name":"planmodule",
+	"name":"plan",
 	"displayName":"Product Plan",
 	"models":[{
 		"name": "Plan",
-		"collection": "product_planmodule_Plan",
+		"collection": "dss_product_plan",
 		"schema": {
 	        "name": {
 	        	"type": "String",
