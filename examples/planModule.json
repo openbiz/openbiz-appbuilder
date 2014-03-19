@@ -226,7 +226,7 @@
                     "displayName":"Delete",
                     "type":"button",
                     "event":"click",
-                    "action":"deleteRecord()",
+                    "action":"deleteRecord",
                     "permission":"dss-product-plan-manage"
                 }
             ]
@@ -323,7 +323,7 @@
                     "className":"",
                     "type":"button",
                     "event":"click",
-                    "action":"saveRecord()",
+                    "action":"saveRecord",
                     "gotoURL":"/product/plans/:id"
                 },
                 {
@@ -393,7 +393,7 @@
                     "className":"",
                     "type":"button",
                     "event":"click",
-                    "action":"saveRecord()",
+                    "action":"saveRecord",
                     "gotoURL":"/product/plans/:id"
                 },
                 {
@@ -495,7 +495,7 @@
                     "className":"",
                     "type":"button",
                     "event":"click",
-                    "action":"saveRecord()",
+                    "action":"saveRecord",
                     "gotoURL":"/product/plans/:id"
                 },
                 {
