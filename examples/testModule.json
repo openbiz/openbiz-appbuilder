@@ -235,7 +235,7 @@
 					"className":"",
 					"type":"button",
 					"event":"click",
-					"action":"saveRecord()",
+					"action":"saveRecord",
 					"gotoURL":"/tests/:id"
 				},
 				{
