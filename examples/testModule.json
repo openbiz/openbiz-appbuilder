@@ -142,7 +142,8 @@
 				{
 					"name":"delete",
 					"displayName":"Delete",
-					"type":"button",
+					"className":"hidden-xs",
+					"type":"Button",
 					"event":"click",
 					"action":"deleteRecord()",
 					"permission":"test-info-manage"	
@@ -235,7 +236,7 @@
 					"className":"",
 					"type":"button",
 					"event":"click",
-					"action":"saveRecord()",
+					"action":"saveRecord",
 					"gotoURL":"/tests/:id"
 				},
 				{
