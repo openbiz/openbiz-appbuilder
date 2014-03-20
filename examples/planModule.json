@@ -7,7 +7,6 @@
         {
             "name": "ProductPlan",
             "collection": "dss_product_plan",
-            "resourceUri": "/product/plan",
             "schema": {
                 "bandno": {
                     "type": "String",
@@ -78,34 +77,34 @@
                             "type": "Number",
                             "required": true
                         },
-                        "planAmount": {
-                            "type": "Number",
-                            "required": true
-                        },
+//                        "planAmount": {
+//                            "type": "Number",
+//                            "required": true
+//                        },
                         "oldCategoryCount": {
                             "type": "Number"
                         },
                         "oldQuantity": {
                             "type": "Number"
                         },
-                        "newCategoryCount": {
-                            "type": "Number"
-                        },
-                        "newQuantity": {
-                            "type": "Number"
-                        },
+//                        "newCategoryCount": {
+//                            "type": "Number"
+//                        },
+//                        "newQuantity": {
+//                            "type": "Number"
+//                        },
                         "newUnitPrice": {
                             "type": "Number"
-                        },
-                        "newAmount": {
-                            "type": "String"
                         }
+//                        "newAmount": {
+//                            "type": "String"
+//                        }
                     }
                 ]
             },
             "action": {
                 "statics": [],
-                "methods": ["getPlanAmount", "getNewAmount", "getNewCategoryCount","getNewQuantity"]
+                "methods": []
             }
         }
     ],
@@ -114,41 +113,79 @@
             "name": "ProductPlanController",
             "model": "ProductPlan",
             "type": "ModelController",
-            "actions":["customFunction"]
+            "actions":[]
+        },
+        {
+            "name": "ProductPlanStyleCategroyController",
+            "model": "ProductPlan",
+            "path": "styleCategoryPlan",
+            "type": "ModelSubdocController",
+            "actions":[]
         }
     ],
     "routes":{
-        "post /product/plan" 	: {
+        "post /product-plans" 	: {
             "permissions": ["dss-product-plan-manage"],
             "action" 	: "ProductPlanController.create"
         },
-        "get /product/plan" 	: {
+        "post /product-plans/:id/style-category-plans" 	: {
+            "permissions": ["dss-product-plan-manage"],
+            "action" 	: "ProductPlanStyleCategroyController.create"
+        },
+        "get /product-plans" 	: {
             "permissions": ["dss-product-plan-access"],
             "action" 	: "ProductPlanController.getCollection"
+        },
+        "get /product-plans/:id/style-category-plans" 	: {
+            "permissions": ["dss-product-plan-access"],
+            "action" 	: "ProductPlanStyleCategroyController.getCollection"
         },
         "put /product/plan/:id" 	: {
             "permissions": ["dss-product-plan-manage"],
             "action" 	: "ProductPlanController.update"
         },
+        "put /product-plans/:id/style-category-plans/:subId" 	: {
+            "permissions": ["dss-product-plan-manage"],
+            "action" 	: "ProductPlanStyleCategroyController.update"
+        },
         "delete /product/plan/:id" 	: {
             "permissions": ["dss-product-plan-manage"],
             "action" 	: "ProductPlanController.delete"
         },
+        "delete /product-plans/:id/style-category-plans/:subId" 	: {
+            "permissions": ["dss-product-plan-manage"],
+            "action" 	: "ProductPlanStyleCategroyController.delete"
+        },
         "get /product/plan/:id" : {
             "permissions": ["dss-product-plan-access"],
             "action" 	: "ProductPlanController.getItem"
+        },
+        "get /product-plans/:id/style-category-plans/:subId" 	: {
+            "permissions": ["dss-product-plan-access"],
+            "action" 	: "ProductPlanStyleCategroyController.create"
         }
     },
     "clientModels": [
         {
-            "resourceUri":"/product/plan",
+            "resourceUri":"/product-plans",
             "itemModel":{
                 "name":"ProductPlan",
-                "actions":["testAction","testAction2"]
+                "actions":["getSumPlanAmount","getSumPlanQuantity","getSumNewAmount","getSumNewQuantity"]
             },
             "collectionModel":{
                 "name":"ProductPlanCollection",
-                "actions":["testCollectionAction","testCollectionAction2"]
+                "actions":[]
+            }
+        },
+        {
+            "resourceUri":"/product-plans/:id/style-category-plans",
+            "itemModel":{
+                "name":"ProductPlanStyleCategory",
+                "actions":["getPlanAmount", "getNewAmount", "getNewCategoryCount","getNewQuantity"]
+            },
+            "collectionModel":{
+                "name":"ProductPlanStyleCategoryCollection",
+                "actions":[]
             }
         }
     ],
@@ -160,7 +197,7 @@
             "permission":"dss-product-plan-access"	,
             "type": "gridForm",
             "model": "ProductPlan",
-            "url": "/product/plans",
+            "url": "/product-plans",
             "fields":[
                 {
                     "name":"bandno",
@@ -168,7 +205,7 @@
                     "displayName":"波段编号",
                     "className":"",
                     "type":"link",
-                    "url":"/product/plans/:id"
+                    "url":"/product-plans/:id"
                 },
                 {
                     "name":"brand",
@@ -197,7 +234,8 @@
                 {
                     "name":"publicDate",
                     "field":"publicData",
-                    "displayName":"上市日期"
+                    "displayName":  "上市日期",
+                    "default":  "<%= Date.now %>"
                 },
                 {
                     "name":"researchSubmitDate",
@@ -209,6 +247,7 @@
                     "name":"headSubmitDate",
                     "field":"headSubmitDate",
                     "displayName":"头单截止",
+                    "hint":"头单截至入库日期",
                     "className":"hidden-xs"
                 },
                 {
@@ -216,6 +255,11 @@
                     "field":"headSubmitDate",
                     "displayName":"尾单截止",
                     "className":"hidden-xs"
+                },,
+                {
+                    "name":"planQuantity",
+                    "field":"<%= this.model.getSumPlanQuantity %>",
+                    "displayName":"计划款量"
                 }
             ],
             "paginator": true,
@@ -237,7 +281,7 @@
             "type": "editForm",
             "permission":"dss-product-plan-manage",
             "model": "ProductPlan",
-            "url": "/product/plans/:id/edit",
+            "url": "/product-plans/:id/edit",
             "fields":[
                 {
                     "name":"bandno",
