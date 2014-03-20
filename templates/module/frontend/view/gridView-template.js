@@ -13,72 +13,81 @@ define(['',''],
 			_actions:null,
 			_config:null,
 			_recordActions:null,
+			_dataGridEL:'.data-grid',
 			initialize:function(){
 				openbiz.View.prototype.initialize.call(this);
 				this.template = _.template(templateData);
 				this.collection = new dataCollection();
 			},
+			_bindEvents:function(){
+				this.undelegateEvents();					
+				this.delegateEvents();
+				for(var i in this._actions){
+					var action = this._actions[i];
+					var method = action["action"];
+					if (!_.isFunction(method)) method = this[action["action"]];
+					if (!method) continue;
+					var action = this._actions[i];
+					var eventName = action['event'], selector = action['className'];
+					method = _.bind(method, this);
+					eventName += '.delegateEvents' + this.cid;
+					if (selector === '') {
+						this.$el.on(eventName, method);
+					} else {
+						this.$el.on(eventName, selector, method);
+					}
+				}
+				for (var i in this._recordActions){
+					var recordAction = this._recordActions[i];
+					var className = recordAction["className"];
+					var selector = ".rec-act-"+recordAction["name"].toLowerCase();
+
+
+					// switch(recordAction["name"]){
+					// 	case "delete":
+					// 	{
+					// 		className = ".btn-record-delete";
+					// 		break;
+					// 	}
+					// 	case "detail":
+					// 	{
+					// 		className = ".btn-record-detail";
+					// 		break;
+					// 	}
+					// 	case "edit":
+					// 	{
+					// 		className = ".btn-record-edit";
+					// 		break;
+					// 	}
+					// }
+					var method = recordAction["action"];
+					if (!_.isFunction(method)) method = this[action["action"]];
+					if (!method) continue;
+					var action = this._actions[i];
+					var eventName = recordAction['event'], selector = className;
+					method = _.bind(method, this);
+					eventName += '.delegateEvents' + this.cid;
+					if (selector === '') {
+						this.$el.on(eventName, method);
+					} else {
+						this.$el.on(eventName, selector, method);
+					}
+				}
+				return this;
+			},
 			render:function(){
 				$(this.el).html(this.template(this.locale));
 				$(window).off('resize');
 				openbiz.ui.update($(this.el));
-				// if has no permission
+				if(this._canDisplayView())
+				{
+					this._renderDataGridConfig()
+						._bindEvents();					
+				}
+				else
 				{
 					this._renderNoPermissionView();
-				}
-				//else  has permission
-				{
-					this._renderDataGridConfig();
-					this.undelegateEvents();
-					this.delegateEvents();
-					for(var i in this._actions){
-						var action = this._actions[i];
-						var method = action["action"];
-						if (!_.isFunction(method)) method = this[action["action"]];
-						if (!method) continue;
-						var action = this._actions[i];
-						var eventName = action['event'], selector = action['className'];
-						method = _.bind(method, this);
-						eventName += '.delegateEvents' + this.cid;
-						if (selector === '') {
-							this.$el.on(eventName, method);
-						} else {
-							this.$el.on(eventName, selector, method);
-						}
-					}
-					for (var rac in this._recordActions){
-						var recordAction = this._recordActions[rac];
-						var className;
-						switch(recordAction["name"]){
-							case "delete":
-							{
-								className = ".btn-record-delete";
-								break;
-							}
-							case "detail":
-							{
-								className = ".btn-record-detail";
-								break;
-							}
-							case "edit":
-							{
-								className = ".btn-record-edit";
-								break;
-							}
-						}
-						var method = recordAction["action"];
-						if (!_.isFunction(method)) method = this[action["action"]];
-						if (!method) continue;
-						var action = this._actions[i];
-						var eventName = recordAction['event'], selector = className;
-						method = _.bind(method, this);
-						eventName += '.delegateEvents' + this.cid;
-						if (selector === '') {
-							this.$el.on(eventName, method);
-						} else {
-							this.$el.on(eventName, selector, method);
-						}
-					}
+					
 				}
 				return this;
 			},
@@ -92,8 +101,11 @@ define(['',''],
 				for (var i in columnConfig){
 					var column = columnConfig[i];
 					if(self._canDisplayColumn(column)){
+
+						columns.push(openbiz.elements.grid[column['type']].getConfig(this,column));
+
 						var field = {};
-						if(column['field']){
+						if(typeof column['field']!='undefined' && column['field']){
 							field.name = column['field'];
 						}
 						if(column['displayName']){
@@ -175,7 +187,7 @@ define(['',''],
 							}
 						}
 					}
-					columns.push(field);
+					// columns.push(field);
 				}
 
 				if(this._getFilterConfig()){

@@ -142,7 +142,8 @@
 				{
 					"name":"delete",
 					"displayName":"Delete",
-					"type":"button",
+					"className":"hidden-xs",
+					"type":"Button",
 					"event":"click",
 					"action":"deleteRecord()",
 					"permission":"test-info-manage"	
