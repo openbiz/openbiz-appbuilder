@@ -10,8 +10,11 @@ define(['text!./{{VIEW_NAME}}.json',
 		el: '#main',
 		collection: dataCollection,
 		template: templateData,
-		metadata:  openbiz.MetadataParser.call(this,metadata),		
-		events:{},		
+		metadata: openbiz.MetadataParser.call(this,metadata),		
+		events:{},	
+		elements:{ 
+			//custom action elements 
+		}, 	
 		
 		beforeRender:function(){},
 		afterRender:function(){},
