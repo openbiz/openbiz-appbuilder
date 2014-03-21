@@ -16,8 +16,8 @@ define(['./{{MODEL_NAME}}'],function(Model){
 		}{% if(ACTIONS.length>0){ %},{% } %}
 		{% for(var i=0;i<ACTIONS.length;i++){ var ACTION = ACTIONS[i]; %}
 		//Auto generated function
-		{{ACTION}}: function(){
-
+		{{ACTION.name}}: function({{ACTION.parameters}}){
+			{{ACTION.function}}
 		}{% if(i<(ACTIONS.length-1)){ %},{% } %}
 		{% } %}
 	});

@@ -33,7 +33,7 @@ module.exports = function(app){	{% if (BASE_CONTROLLER=='ModelController' || BAS
 {% }else{ %}	return app.openbiz.Controller.extend({   {% } %}
 {% for(var i=0;i<ACTIONS.length;i++){ var ACTION = ACTIONS[i]; %}
 		//Auto generated function
-		{{ACTION}}: function(req,res){}{% if(i<(ACTIONS.length-1)){ %},{% } %}
+		{{ACTION.name}}: function(req,res){ {{ACTION.function}} }{% if(i<(ACTIONS.length-1)){ %},{% } %}
 {% } %}
 	});
 }

@@ -47,8 +47,26 @@
 			}
 		},
 		"action":{
-			"statics":["statFunc1","statFunc2"],
-			"methods":["dynaFunc1","dynaFunc2"]
+			"statics":[
+				{
+					"name": "statFunc1",
+					"parameters":"arg1,arg2",
+					"function":" var x=123;return this; "
+				},
+				{
+					"name": "statFunc2",
+					"function":""
+				}
+			],
+			"methods":[
+				{
+					"name": "dynaFunc1",
+					"function":" var x=123;return this; "
+				},
+				{
+					"name": "dynaFunc2",
+					"function":""
+				}]
 		}
 	}],
 
@@ -57,14 +75,27 @@
 			"name":"TestController",
 			"model":"Test",
 			"type":"ModelController",
-			"actions":["customFunction"]		
+			"actions":[
+			{
+				"name": "customFunction",
+				"function":" var x=123;return this; "
+			},
+			{
+				"name": "customFunction2"			
+			}]		
 		},
 		{
 			"name":"TestSubController",
 			"model":"Test",
 			"path":"info",
 			"type":"ModelSubdocController",
-			"actions":["customSubFunction"]		
+			"actions":[{
+				"name": "customFunction",
+				"function":" var x=123;return this; "
+			},
+			{
+				"name": "customFunction2"			
+			}]		
 		}
 	],
 
@@ -96,11 +127,27 @@
 			"resourceUri":"/test",
 			"itemModel":{
 				"name":"Test",
-				"actions":["testAction","testAction2"]
+				"actions":[{
+					"name": "getStat",
+					"parameters":"",
+					"function":" return this.get('attr1') * this.get('attr2'); "
+				},
+				{
+					"name": "statFunc2",
+					"function":""
+				}]
 			},
 			"collectionModel":{
 				"name":"TestCollection",
-				"actions":["testCollectionAction","testCollectionAction2"]
+				"actions":[{
+					"name": "statFunc1",
+					"parameters":"arg1,arg2",
+					"function":" var x=123;return this; "
+				},
+				{
+					"name": "statFunc2",
+					"function":""
+				}]
 			}			
 		}
 	],	
