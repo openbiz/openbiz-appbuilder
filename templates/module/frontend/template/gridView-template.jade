@@ -1,0 +1,21 @@
+ol.breadcrumb
+	{% for(var i=0;i<breadcrumbs.lenght;i++){ var breadcrumb = breadcrumbs[i]  %}
+	{% 		if(breadcrumb.url !== 'undefined' && breadcrumb.url){ %}
+	li
+		a(href!="{{ breadcrumb.url }}") <%= breadcrumb.{{BREADCRUMB_NAME}} %>
+	{% 		} else { %}
+	li.active <%= breadcrumb.{{BREADCRUMB_NAME}} %>
+	{% 		} %}
+	{% } %}
+#content
+	.row
+		.col-md-12
+			section.panel.wizard-form.corner-flip
+				header.panel-heading
+					h2 <%= viewTitle%>
+					p <%= viewDescription%>
+				.panel-body.data-grid
+				.panel-footer					
+					button.btn-next.btn.btn-theme.btn-record-add
+						i.fa.fa-plus
+						| &nbsp; Invite User &nbsp;
