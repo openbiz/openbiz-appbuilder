@@ -1,8 +1,12 @@
 {
 	"type":"module",
-	"app":"test",
+	"app":{
+		"name":"test",
+		"displayName":"决策支持系统",
+		"url":"/dss"
+	},
 	"name":"firstmodule",
-	"displayName":"Test App",
+	"displayName":"Test App",	
 	"models":[{
 		"name": "Test",
 		"collection": "test_testmodule_Test",

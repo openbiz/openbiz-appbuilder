@@ -1,12 +1,7 @@
-ol.breadcrumb
-	{% for(var i=0;i<breadcrumbs.lenght;i++){ var breadcrumb = breadcrumbs[i]  %}
-	{% 		if(breadcrumb.url !== 'undefined' && breadcrumb.url){ %}
+ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i];  %}{% 		if(typeof node.url != 'undefined' && node.url){ %}
 	li
-		a(href!="{{ breadcrumb.url }}") <%= breadcrumb.{{BREADCRUMB_NAME}} %>
-	{% 		} else { %}
-	li.active <%= breadcrumb.{{BREADCRUMB_NAME}} %>
-	{% 		} %}
-	{% } %}
+		a(href!="{{ node.url }}") <%= breadcrumb.{{node.name}} %>{% 		} else { %}
+	li.active <%= breadcrumb.{{node.name}} %>{% 		} %}{% } %}
 #content
 	.row
 		.col-md-12
@@ -14,8 +9,9 @@ ol.breadcrumb
 				header.panel-heading
 					h2 <%= viewTitle%>
 					p <%= viewDescription%>
-				.panel-body.data-grid
-				.panel-footer					
+				.panel-body
+					.data-grid
+				.panel-footer
 					button.btn-next.btn.btn-theme.btn-record-add
 						i.fa.fa-plus
 						| &nbsp; Invite User &nbsp;
