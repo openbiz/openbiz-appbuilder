@@ -9,9 +9,8 @@ var basedir = process.cwd();
 
 if(typeof options.config!='undefined' && fs.existsSync(options.config)){
 	var config = require(options.config);	
-	config.output = options.output;
-	config.appFile = options.appfile;
-	config.override = options.force?options.force:false;
+	config.options = options;
+	config.options.override = options.force?options.force:false;
 	switch(config.type.toLowerCase()){
 		case "application":
 			require("../lib/builder/ApplicationBuilder").build(config);
