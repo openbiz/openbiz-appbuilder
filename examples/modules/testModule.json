@@ -246,7 +246,7 @@
 					"className":"",
 					"type":"button",
 					"event":"click",
-					"function":"saveRecord()",
+					"function":"saveRecord",
 					"gotoURL":"/tests/:id"
 				},
 				{
