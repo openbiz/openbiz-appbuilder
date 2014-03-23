@@ -315,6 +315,23 @@
 		}
 	],
 
+	"menus":[
+		{
+			"name":"test",
+			"displayName":"Test Module",
+			"url":"/test",
+			"permission":"test-info-access",
+			"className":"mylink teststyle"
+		},
+		{
+			"name":"test2",
+			"displayName":"Test Module2",
+			"url":"/test",
+			"permission":"test-info-access",
+			"className":""
+		}
+	],
+
 	"roles":[
 		{
 			"name":"test-manager",
