@@ -275,6 +275,12 @@
 					"field":"info.website",
 					"className":"hidden-xs",
 					"type":"text"
+				},
+				{
+					"name":"sel",
+					"field":"info.see",
+					"className":"hidden-xs",
+					"type":"select"
 				}
 			],
 			"actions":[

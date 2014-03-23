@@ -6,22 +6,14 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 	.row
 		.col-md-12
 			.panel-body
-				.form(role="form",parsley-validate,novalidate="novalidate")
-				{% for(var i=0;i<FORM_FIELDS.length;i++){var field = FORM_FIELDS[i];switch(field.type){%}
-					{%case 'text':%}
+				.form(role="form",parsley-validate,novalidate="novalidate"){% for(var i=0;i<FORM_FIELDS.length;i++){var field = FORM_FIELDS[i];%}{%if(field.type == 'text'){%}
 					.form-group
-						input.form-control(name="{{field.selector}}",type="text", {{field.validation}},{%if(field.field){%}value!="<%= {{field.field}}%>"{%}%})
-					{%break;%}
-					{%case 'textarea':%}
+						input.form-control(name="{{field.selector}}",type="text", {{field.validation}},{%if(field.field){%}value!="<%= {{field.field}}%>"{%}%}){%}%}{%if(field.type == 'textarea'){%}
 					.form-group
-						textarea.form-control(name="{{field.selector}}", {{field.validation}},{%if(field.field){%}value!="<%= {{field.field}} %>"{%}%})
-					{%break;%}
-					{%case 'select':%}
+						textarea.form-control(name="{{field.selector}}", {{field.validation}},{%if(field.field){%}value!="<%= {{field.field}} %>"{%}%}){%}%}{%if(field.type == 'select'){%}
 					.form-group
 						select.form-control
-							//forin dataSource and put all options
-					{%break;%}
-					{%}%}  {%}%}
+							option ZIMMUR{%}%}{%}%}
 			.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var action = ACTIONS[i];  %}
 				button.btn{{action.selector}}{{action.className}}
 					| {{action.localeName}} {% } %}
