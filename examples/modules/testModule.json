@@ -267,12 +267,14 @@
 				{
 					"name":"name",
 					"field":"name",
-					"className":""
+					"className":"",
+					"type":"text"
 				},
 				{
 					"name":"website",
 					"field":"info.website",
-					"className":"hidden-xs"
+					"className":"hidden-xs",
+					"type":"text"
 				}
 			],
 			"actions":[
