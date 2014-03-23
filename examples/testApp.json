@@ -32,6 +32,7 @@
 		}],
 	"languages":["zh-cn","en"],
 	"menu":{
+		"icon":"fa-briefcase",
 		"permission":"test-menu-access"
 	},
 	"modules":[
