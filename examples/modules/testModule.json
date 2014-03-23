@@ -182,6 +182,7 @@
 					"name":"new",
 					"type":"link",
 					"url":"/tests/new",
+					"className":"btn-theme x-large",
 					"permission":"test-info-manage"
 				},
 				{
