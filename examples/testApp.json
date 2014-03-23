@@ -34,6 +34,9 @@
 	"menu":{
 		"permission":"test-menu-access"
 	},
+	"modules":[
+		"modules/testModule"
+	],
 	"deploy":
 	{
 		"backend":"/api/test",

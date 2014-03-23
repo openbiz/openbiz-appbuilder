@@ -1,21 +1,26 @@
+<<<<<<< HEAD
 ol.breadcrumb
 	{% for(var i=0;i<breadcrumbs.lenght;i++){ var breadcrumb = breadcrumbs[i];  %}
 	{% 		if(breadcrumb.url !== 'undefined' && breadcrumb.url){ %}
+=======
+ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i];  %}{% 		if(typeof node.url != 'undefined' && node.url){ %}
+>>>>>>> 187d6d984f599a4105fc7c40bd13655b39b7fc8e
 	li
-		a(href!="{{ breadcrumb.url }}") <%= breadcrumb.{{BREADCRUMB_NAME}} %>
-	{% 		} else { %}
-	li.active <%= breadcrumb.{{BREADCRUMB_NAME}} %>
-	{% 		} %}
-	{% } %}
+		a(href!="{{ node.url }}") <%= breadcrumb.{{node.name}} %>{% 		} else { %}
+	li.active <%= breadcrumb.{{node.name}} %>{% 		} %}{% } %}
 #content
 	.row
 		.col-md-12
 			section.panel.wizard-form.corner-flip
 				header.panel-heading
 					h2 <%= viewTitle%>
+					<%if(typeof viewDescription=='string'){%>
 					p <%= viewDescription%>
-				.panel-body.data-grid
-				.panel-footer					
-					button.btn-next.btn.btn-theme.btn-record-add
-						i.fa.fa-plus
-						| &nbsp; Invite User &nbsp;
+					<%}%>
+				.panel-body
+					.data-grid
+				.panel-footer
+					{% for(var i=0;i<ACTIONS.length;i++) { var action = ACTIONS[i];  %}
+					button.btn.btn-theme.{% action.selector %}
+						| {% action.localeName %}
+					{% } %}

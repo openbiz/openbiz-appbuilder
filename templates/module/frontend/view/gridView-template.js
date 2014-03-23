@@ -1,7 +1,8 @@
 "use strict";
 define(['text!./{{VIEW_NAME}}.json',
 		'text!templates/{{MODULE_NAME}}/{{VIEW_NAME}}.html',
-		'../models/{{MODEL_NAME}}'],
+		'../models/{{MODEL_NAME}}'
+		/*CUSTOM_ELEMNT_CLASSES*/],
 	function(metadata,templateData,dataCollection){
 	return openbiz.GridView.extend({
 		app: '{{APP_NAME}}',
