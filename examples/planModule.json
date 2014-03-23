@@ -170,7 +170,7 @@
             "resourceUri":"/product-plans",
             "itemModel":{
                 "name":"ProductPlan",
-                "actions":["getSumPlanAmount","getSumPlanQuantity","getSumNewAmount","getSumNewQuantity"]
+                "actions":["getSumPlanAmount","getSumPlanQuantity","getSumOldAmount","getSumOldQuantity","getSumNewAmount","getSumNewQuantity"]
             },
             "collectionModel":{
                 "name":"ProductPlanCollection",
