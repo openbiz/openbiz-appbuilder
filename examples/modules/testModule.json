@@ -186,6 +186,7 @@
 				},
 				{
 					"name":"test",
+					"displayName":"Stat Func",
 					"type":"button",
 					"function":"statFunc2",
 					"permission":"test-info-manage"
