@@ -6,48 +6,48 @@
 		"url":"/dss"
 	},
 	"name":"firstmodule",
-	"displayName":"Test App",	
+	"displayName":"Test App",
 	"models":[{
 		"name": "Test",
 		"collection": "test_testmodule_Test",
 		"schema": {
-	        "name": {
-	        	"type": "String",
-	        	"required": true,
-	        	"unique": true
-	        },
-	        "info": {
-		        "website": {
-		        	"type": "String"
-		        },
-	            "address": {            
-	                "country": {
-		        		"type": "String"
-		        	},
-	                "province": {
-		        		"type": "String"
-		        	},
-	                "city": {
-		        		"type": "String"
-		        	},
-	                "street": {
-		        		"type": "String"
-		        	},
-	                "zipcode": {
-		        		"type": "String"
-		        	}
-	            },
-	            "phone": {
-	                "countryCode": {
-		        		"type": "String"
-		        	},
-	                "areaCode": {
-		        		"type": "Number"
-		        	},
-	                "number": {
-		        		"type": "Number"
-		        	}
-	            }
+			"name": {
+				"type": "String",
+				"required": true,
+				"unique": true
+			},
+			"info": {
+				"website": {
+					"type": "String"
+				},
+				"address": {
+					"country": {
+						"type": "String"
+					},
+					"province": {
+						"type": "String"
+					},
+					"city": {
+						"type": "String"
+					},
+					"street": {
+						"type": "String"
+					},
+					"zipcode": {
+						"type": "String"
+					}
+				},
+				"phone": {
+					"countryCode": {
+						"type": "String"
+					},
+					"areaCode": {
+						"type": "Number"
+					},
+					"number": {
+						"type": "Number"
+					}
+				}
 			}
 		},
 		"functions":{
@@ -81,13 +81,13 @@
 			"model":"Test",
 			"type":"ModelController",
 			"functions":[
-			{
-				"name": "customFunction",
-				"function":" var x=123;return this; "
-			},
-			{
-				"name": "customFunction2"			
-			}]		
+				{
+					"name": "customFunction",
+					"function":" var x=123;return this; "
+				},
+				{
+					"name": "customFunction2"
+				}]
 		},
 		{
 			"name":"TestSubController",
@@ -98,32 +98,32 @@
 				"name": "customFunction",
 				"function":" var x=123;return this; "
 			},
-			{
-				"name": "customFunction2"			
-			}]		
+				{
+					"name": "customFunction2"
+				}]
 		}
 	],
 
 	"routes":{
-		"post /test" 	: { 
+		"post /test" 	: {
 			"permissions": ["test-info-manage"],
-			"action" 	: "TestController.create" 
+			"action" 	: "TestController.create"
 		},
-		"get /test" 	: { 
+		"get /test" 	: {
 			"permissions": ["test-info-access"],
-			"action" 	: "TestController.getCollection" 
+			"action" 	: "TestController.getCollection"
 		},
-		"put /test/:id" 	: { 
+		"put /test/:id" 	: {
 			"permissions": ["test-info-manage"],
-			"action" 	: "TestController.update" 
+			"action" 	: "TestController.update"
 		},
-		"delete /test/:id" 	: { 
+		"delete /test/:id" 	: {
 			"permissions": ["test-info-manage"],
-			"action" 	: "TestController.delete" 
+			"action" 	: "TestController.delete"
 		},
-		"get /test/:id" : { 
+		"get /test/:id" : {
 			"permissions": ["test-info-access"],
-			"action" 	: "TestController.getItem" 
+			"action" 	: "TestController.getItem"
 		}
 	},
 
@@ -137,10 +137,10 @@
 					"parameters":"",
 					"function":" return this.get('attr1') * this.get('attr2'); "
 				},
-				{
-					"name": "statFunc2",
-					"function":""
-				}]
+					{
+						"name": "statFunc2",
+						"function":""
+					}]
 			},
 			"collectionModel":{
 				"name":"TestCollection",
@@ -149,13 +149,13 @@
 					"parameters":"arg1,arg2",
 					"function":" var x=123;return this; "
 				},
-				{
-					"name": "statFunc2",
-					"function":""
-				}]
-			}			
+					{
+						"name": "statFunc2",
+						"function":""
+					}]
+			}
 		}
-	],	
+	],
 
 	"views":[
 		{
@@ -166,30 +166,6 @@
 			"type":"gridView",
 			"model":"TestCollection",
 			"url":"/tests",
-			"fields":[
-				{
-					"name":"name",
-					"field":"name",
-					"displayName":"Name",
-					"className":"",
-					"type":"link",
-					"url":"/tests/:id"
-				},
-				{
-					"name":"website",
-					"field":"info.website",
-					"displayName":"website",
-					"className":"hidden-xs"
-				},
-				{
-					"name":"actions",
-					"displayName":"Action",
-					"type":"recordActions",
-					"permission":"test-info-manage"	
-				}
-			],
-			"paginator":true,
-			"filter":true,
 			"recordActions":[
 				{
 					"name":"delete",
@@ -197,8 +173,8 @@
 					"className":"hidden-xs",
 					"type":"Button",
 					"event":"click",
-					"function":"deleteRecord()",
-					"permission":"test-info-manage"	
+					"function":"deleteRecord",
+					"permission":"test-info-manage"
 				}
 			],
 			"actions":[
@@ -206,7 +182,13 @@
 					"name":"new",
 					"type":"link",
 					"url":"/tests/new",
-					"permission":"test-info-manage"	
+					"permission":"test-info-manage"
+				},
+				{
+					"name":"test",
+					"type":"button",
+					"function":"statFunc2",
+					"permission":"test-info-manage"
 				}
 			],
 			"functions":[{
@@ -214,10 +196,10 @@
 				"parameters":"arg1,arg2",
 				"function":" var x=123;return this; "
 			},
-			{
-				"name": "statFunc2",
-				"function":""
-			}]
+				{
+					"name": "statFunc2",
+					"function":""
+				}]
 		},
 		{
 			"name":"testEditView",
@@ -230,7 +212,7 @@
 				{
 					"name":"name",
 					"field":"name",
-					"className":"",				
+					"className":"",
 					"validation":"",
 					"type":"text"
 				},
@@ -306,7 +288,7 @@
 					"type":"link",
 					"url":"/tests"
 				}
-			]		
+			]
 		},
 		{
 			"name":"testNewView",
@@ -318,7 +300,7 @@
 				{
 					"name":"name",
 					"field":"name",
-					"className":""			
+					"className":""
 				},
 				{
 					"name":"website",
@@ -344,8 +326,8 @@
 			"name":"test-user",
 			"displayName":"Test User",
 			"permissions":[
-				"test-info-access",	
-				"test-menu-access"			
+				"test-info-access",
+				"test-menu-access"
 			],
 			"isDefault":true
 		}]
