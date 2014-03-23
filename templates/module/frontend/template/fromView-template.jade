@@ -6,7 +6,7 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 	.row
 		.col-md-12
 			.panel-body
-				.form(role="form",parsley-validate,novalidate="novalidate"){% for(var i=0;i<FORM_FIELDS.length;i++){var field = FORM_FIELDS[i];%}{%if(field.type == 'text'){%}
+				.form.recordForm(role="form",parsley-validate,novalidate="novalidate"){% for(var i=0;i<FORM_FIELDS.length;i++){var field = FORM_FIELDS[i];%}{%if(field.type == 'text'){%}
 					.form-group
 						input.form-control(name="{{field.selector}}",type="text", {{field.validation}},{%if(field.field){%}value!="<%= {{field.field}}%>"{%}%}){%}%}{%if(field.type == 'textarea'){%}
 					.form-group
