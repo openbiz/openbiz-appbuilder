@@ -7,11 +7,9 @@ var options = require('../lib/cli').options;
 var fs = require('fs');
 var basedir = process.cwd();
 
-if(typeof options.config!='undefined' && fs.existsSync(options.config)){
+if(options){
 	var config = require(options.config);	
-	config.options = options;
-	config.options.override = options.force?options.force:false;
-	config.options.verbose = options.verbose?options.verbose:false;
+	config.options = options;	
 	switch(config.type.toLowerCase()){
 		case "application":
 			require("../lib/builder/ApplicationBuilder").build(config);
@@ -23,6 +21,4 @@ if(typeof options.config!='undefined' && fs.existsSync(options.config)){
 			console.log("specified config doesn't setup [type] node.");
 			break;
 	}
-}else{
-	console.log("please specify a config file by using --config [path]");
 }
