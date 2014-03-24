@@ -1,32 +1,27 @@
 "use strict";
-define(['',''],
-	function(templateData,dataModel){
-		return openbiz.View.extend({
-			app: 'xxx',
-			module:'xx',
-			name: 'xxx',
+define(['text!./{{VIEW_NAME}}.json',
+	'text!templates/{{MODULE_NAME}}/{{VIEW_NAME}}.html',
+	'../models/{{MODEL_NAME}}'
+	/*CUSTOM_ELEMNT_CLASSES*/],
+	function(metadata,templateData,dataModel){
+		return openbiz.FormView.extend({
+			app: '{{APP_NAME}}',
+			module:'{{MODULE_NAME}}',
+			name: '{{VIEW_NAME}}',
 			el: '#main',
-			apps:null,
-			model:null,
-			initialize:function(){
-				openbiz.View.prototype.initialize.call(this);
-				this.template = _.template(templateData);
-				this.model = new dataModel();
-			},
-			renderDataGrid:function(){
+			model: dataModel,
+			template: templateData,
+			metadata: openbiz.MetadataParser.call(this,metadata),
+			_fields:{{FORM_FIELDS}},
+			events:{},
+			beforeRender:function(){},
+			afterRender:function(){},
 
-			},
-			render:function(){
-				$(this.el).html(this.template(this.locale));
-				$(window).off('resize');
-				openbiz.ui.update($(this.el));
-				return this;
-			},
-			saveRecord:function(event){
-				event.preventDefault();
-			},
-			_validateForm:function(){
-				return ;
-			}
-		});
+			beforeDeleteRecord:function(){},
+			afterDeleteRecord:function(){}{% if(FUNCTIONS.length>0){ %},{% } %}
+		{% for(var i=0;i<FUNCTIONS.length;i++){ var FUNCTION = FUNCTIONS[i]; %}
+			//Auto generated function
+			{{FUNCTION.name}}: function(req,res){ {{FUNCTION.function}} }{% if(i<(FUNCTIONS.length-1)){ %},{% } %}
+			{% } %}
 	});
+});

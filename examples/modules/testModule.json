@@ -281,6 +281,12 @@
 					"field":"info.see",
 					"className":"hidden-xs",
 					"type":"select"
+				},
+				{
+					"name":"date",
+					"field":"info.date",
+					"className":"ab cd ef",
+					"type":"date"
 				}
 			],
 			"actions":[
