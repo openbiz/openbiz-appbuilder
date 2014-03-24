@@ -18,7 +18,9 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 						input.form-control(name="{{field.selector}}",type='text',{%if(field.field){%}value!="<%= {{field.field}} %>"{%}%})
 						span.input-group-btn
 							button.btn.btn-default(type='button')
-								i.fa.fa-calendar{%}%}{%}%}
+								i.fa.fa-calendar{%}%}{%if(field.type == 'label'){%}
+					.form-group
+						label <%= {{field.field}}%>{%}%}{%}
 			.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var action = ACTIONS[i];  %}
 				button.btn{{action.selector}}{{action.className}}
 					| {{action.localeName}} {% } %}
