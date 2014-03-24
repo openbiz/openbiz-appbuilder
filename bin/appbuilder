@@ -7,22 +7,25 @@ var options = require('../lib/cli').options;
 var fs = require('fs');
 var basedir = process.cwd();
 
-if(typeof options.config!='undefined' && fs.existsSync(options.config)){
-	var config = require(options.config);	
-	config.options = options;
-	config.options.override = options.force?options.force:false;
-	config.options.verbose = options.verbose?options.verbose:false;
-	switch(config.type.toLowerCase()){
-		case "application":
-			require("../lib/builder/ApplicationBuilder").build(config);
-			break;
-		case "module":
-			require("../lib/builder/ModuleBuilder").build(config);
-			break;
-		default:
-			console.log("specified config doesn't setup [type] node.");
-			break;
+if(options){		
+	if(options.generate)
+	{				
+		require("../lib/builder/MetadataBuilder").build(options);
 	}
-}else{
-	console.log("please specify a config file by using --config [path]");
+	else
+	{
+		var config = require(options.config);	
+		config.options = options;
+		switch(config.type.toLowerCase()){
+			case "application":
+				require("../lib/builder/ApplicationBuilder").build(config);
+				break;
+			case "module":
+				require("../lib/builder/ModuleBuilder").build(config);
+				break;
+			default:
+				console.log("specified config doesn't setup [type] node.");
+				break;
+		}
+	}
 }

@@ -1,0 +1,17 @@
+{
+	"type":"module",
+	"app":{
+		"name":"REPLACE THIS TO YOUR APPLICATION NAME",
+		"displayName":"REPLACE THIS TO YOUR APPLICATION DISPLAY NAME",
+		"url":"REPLACE THIS TO YOUR APPLICATION'S ROOT URL e.g. /cubi"
+	},
+	"name":"{{name}}",
+	"displayName":"{{displayName}}",
+	"models":[],
+	"controllers":[],
+	"routes":{},
+	"clientModels": [],
+	"views":[],
+	"menus":[],
+	"roles":[]
+}

@@ -1,0 +1,19 @@
+ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i];  %}{% 		if(typeof node.url != 'undefined' && node.url){ %}
+	li
+		a(href!="{{ node.url }}") <%= breadcrumb.{{node.name}} %>{% 		} else { %}
+	li.active <%= breadcrumb.{{node.name}} %>{% 		} %}{% } %}
+#content
+	.row
+		.col-md-12
+			.panel-body
+				.form.recordForm(role="form",parsley-validate,novalidate="novalidate"){% for(var i=0;i<FORM_FIELDS.length;i++){var field = FORM_FIELDS[i];%}{%if(field.type == 'text'){%}
+					.form-group
+						input.form-control(name="{{field.selector}}",type="text", {{field.validation}},{%if(field.field){%}value!="<%= {{field.field}}%>"{%}%}){%}%}{%if(field.type == 'textarea'){%}
+					.form-group
+						textarea.form-control(name="{{field.selector}}", {{field.validation}},{%if(field.field){%}value!="<%= {{field.field}} %>"{%}%}){%}%}{%if(field.type == 'select'){%}
+					.form-group
+						select.form-control
+							option ZIMMUR{%}%}{%}%}
+			.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var action = ACTIONS[i];  %}
+				button.btn{{action.selector}}{{action.className}}
+					| {{action.localeName}} {% } %}

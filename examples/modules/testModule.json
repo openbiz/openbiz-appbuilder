@@ -182,6 +182,7 @@
 					"name":"new",
 					"type":"link",
 					"url":"/tests/new",
+					"className":"btn-theme x-large",
 					"permission":"test-info-manage"
 				},
 				{
@@ -245,7 +246,7 @@
 					"className":"",
 					"type":"button",
 					"event":"click",
-					"function":"saveRecord()",
+					"function":"saveRecord",
 					"gotoURL":"/tests/:id"
 				},
 				{
@@ -266,12 +267,20 @@
 				{
 					"name":"name",
 					"field":"name",
-					"className":""
+					"className":"",
+					"type":"text"
 				},
 				{
 					"name":"website",
 					"field":"info.website",
-					"className":"hidden-xs"
+					"className":"hidden-xs",
+					"type":"text"
+				},
+				{
+					"name":"sel",
+					"field":"info.see",
+					"className":"hidden-xs",
+					"type":"select"
 				}
 			],
 			"actions":[
@@ -309,6 +318,23 @@
 					"className":"hidden-xs"
 				}
 			]
+		}
+	],
+
+	"menus":[
+		{
+			"name":"test",
+			"displayName":"Test Module",
+			"url":"/tests",
+			"permission":"test-info-access",
+			"className":"mylink teststyle"
+		},
+		{
+			"name":"test2",
+			"displayName":"Test Module2",
+			"url":"/tests",
+			"permission":"test-info-access",
+			"className":""
 		}
 	],
 

@@ -14,5 +14,5 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 				.panel-body
 					.data-grid
 				.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var action = ACTIONS[i];  %}
-					button.btn.btn-theme.{{action.selector}}
+					button.btn{{action.selector}}{{action.className}}
 						| {{action.localeName}} {% } %}
