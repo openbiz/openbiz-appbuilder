@@ -2,23 +2,21 @@
 module.exports = function(app)
 {
     var mongoose = app.openbiz.mongoose;
-    var schema = new mongoose.Schema(function(){
-        var schema = require(__filename.replace(/\.js$/i,'.json'));
-        //advanced parse config json can be done here
-        return schema;
-    }(),{
+    var schema = new mongoose.Schema(
+    app.openbiz.MetadataParser.call(app.openbiz,__filename.replace(/\.js$/i,'.json')),
+    {
         collection: '{{MODEL_COLLECTION}}'
     });
-    {% for(var i=0;i<MODEL_ACTION_STATICS.length;i++){ var ACTION = MODEL_ACTION_STATICS[i]; %}
+    {% for(var i=0;i<MODEL_ACTION_STATICS.length;i++){ var FUNCTION = MODEL_ACTION_STATICS[i]; %}
     //Auto generated function
-    schema.statics.{{ACTION}}: function(){
-        
+    schema.statics.{{FUNCTION.name}}: function({{FUNCTION.parameters}}){
+        {{FUNCTION.function}}
     };
     {% } %}
-    {% for(var i=0;i<MODEL_ACTION_METHODS.length;i++){ var ACTION = MODEL_ACTION_METHODS[i]; %}
+    {% for(var i=0;i<MODEL_ACTION_METHODS.length;i++){ var FUNCTION = MODEL_ACTION_METHODS[i]; %}
     //Auto generated function
-    schema.methods.{{ACTION}}: function(){
-        
+    schema.methods.{{FUNCTION.name}}: function({{FUNCTION.parameters}}){
+        {{FUNCTION.function}}
     };
     {% } %}
     return app.openbiz.db.model('{{APP_NAME}}.{{MODULE_NAME}}.{{MODEL_NAME}}', schema);

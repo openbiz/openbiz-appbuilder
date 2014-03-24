@@ -13,12 +13,12 @@ define(['./{{MODEL_NAME}}'],function(Model){
 		},
 		parseRecords: function (resp, options) {
 			return resp.items;
-		}{% if(ACTIONS.length>0){ %},{% } %}
-		{% for(var i=0;i<ACTIONS.length;i++){ var ACTION = ACTIONS[i]; %}
+		}{% if(FUNCTIONS.length>0){ %},{% } %}
+		{% for(var i=0;i<FUNCTIONS.length;i++){ var FUNCTION = FUNCTIONS[i]; %}
 		//Auto generated function
-		{{ACTION}}: function(){
-
-		}{% if(i<(ACTIONS.length-1)){ %},{% } %}
+		{{FUNCTION.name}}: function({{FUNCTION.parameters}}){
+			{{FUNCTION.function}}
+		}{% if(i<(FUNCTIONS.length-1)){ %},{% } %}
 		{% } %}
 	});
 });

@@ -1,6 +1,10 @@
 {
     "type": "module",
-    "app": "dss",
+    "app" :{
+        "name":"dss",
+        "displayName":"决策支持系统",
+        "url":"/dss"
+    },
     "name": "productPlan",
     "displayName": "商品计划",
     "models": [
@@ -27,36 +31,36 @@
                     "type": "String"
                 },
                 "publicDate": {
-                    "type": "date",
+                    "type": "Date",
                     "required": true
                 },
                 "researchSubmitDate": {
-                    "type": "date",
+                    "type": "Date",
                     "required": true
                 },
                 "headSubmitDate": {
-                    "type": "date"
+                    "type": "Date"
                 },
                 "tailSubmitDate": {
-                    "type": "date"
+                    "type": "Date"
                 },
                 "draftSubmitDate": {
-                    "type": "date"
+                    "type": "Date"
                 },
                 "patternSubmitDate": {
-                    "type": "date"
+                    "type": "Date"
                 },
                 "materialSubmitDate": {
-                    "type": "date"
+                    "type": "Date"
                 },
                 "sampleSubmitDate": {
-                    "type": "date"
+                    "type": "Date"
                 },
                 "photoSubmitDate": {
-                    "type": "date"
+                    "type": "Date"
                 },
                 "fileSubmitDate": {
-                    "type": "date"
+                    "type": "Date"
                 },
                 "styleCategoryPlan": [
                     {
@@ -77,28 +81,15 @@
                             "type": "Number",
                             "required": true
                         },
-//                        "planAmount": {
-//                            "type": "Number",
-//                            "required": true
-//                        },
                         "oldCategoryCount": {
                             "type": "Number"
                         },
                         "oldQuantity": {
                             "type": "Number"
                         },
-//                        "newCategoryCount": {
-//                            "type": "Number"
-//                        },
-//                        "newQuantity": {
-//                            "type": "Number"
-//                        },
                         "newUnitPrice": {
                             "type": "Number"
                         }
-//                        "newAmount": {
-//                            "type": "String"
-//                        }
                     }
                 ]
             },

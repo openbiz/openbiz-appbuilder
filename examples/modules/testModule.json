@@ -1,54 +1,77 @@
 {
 	"type":"module",
-	"app":"test",
+	"app":{
+		"name":"test",
+		"displayName":"决策支持系统",
+		"url":"/dss"
+	},
 	"name":"firstmodule",
 	"displayName":"Test App",
 	"models":[{
 		"name": "Test",
 		"collection": "test_testmodule_Test",
 		"schema": {
-	        "name": {
-	        	"type": "String",
-	        	"required": true,
-	        	"unique": true
-	        },
-	        "info": {
-		        "website": {
-		        	"type": "String"
-		        },
-	            "address": {            
-	                "country": {
-		        		"type": "String"
-		        	},
-	                "province": {
-		        		"type": "String"
-		        	},
-	                "city": {
-		        		"type": "String"
-		        	},
-	                "street": {
-		        		"type": "String"
-		        	},
-	                "zipcode": {
-		        		"type": "String"
-		        	}
-	            },
-	            "phone": {
-	                "countryCode": {
-		        		"type": "String"
-		        	},
-	                "areaCode": {
-		        		"type": "Number"
-		        	},
-	                "number": {
-		        		"type": "Number"
-		        	}
-	            }
+			"name": {
+				"type": "String",
+				"required": true,
+				"unique": true
+			},
+			"info": {
+				"website": {
+					"type": "String"
+				},
+				"address": {
+					"country": {
+						"type": "String"
+					},
+					"province": {
+						"type": "String"
+					},
+					"city": {
+						"type": "String"
+					},
+					"street": {
+						"type": "String"
+					},
+					"zipcode": {
+						"type": "String"
+					}
+				},
+				"phone": {
+					"countryCode": {
+						"type": "String"
+					},
+					"areaCode": {
+						"type": "Number"
+					},
+					"number": {
+						"type": "Number"
+					}
+				}
 			}
 		},
-		"action":{
-			"statics":["statFunc1","statFunc2"],
-			"methods":["dynaFunc1","dynaFunc2"]
+		"functions":{
+			"statics":[
+				{
+					"name": "statFunc1",
+					"parameters":"arg1,arg2",
+					"function":" var x=123;return this; "
+				},
+				{
+					"name": "statFunc2",
+					"function":""
+				}
+			],
+			"methods":[
+				{
+					"name": "dynaFunc1",
+					"function":" var x=123;return this; "
+				},
+				{
+					"name": "dynaFunc2",
+					"function":""
+				}
+			]
 		}
 	}],
 
@@ -57,37 +80,50 @@
 			"name":"TestController",
 			"model":"Test",
 			"type":"ModelController",
-			"actions":["customFunction"]		
+			"functions":[
+				{
+					"name": "customFunction",
+					"function":" var x=123;return this; "
+				},
+				{
+					"name": "customFunction2"
+				}]
 		},
 		{
 			"name":"TestSubController",
 			"model":"Test",
 			"path":"info",
 			"type":"ModelSubdocController",
-			"actions":["customSubFunction"]		
+			"functions":[{
+				"name": "customFunction",
+				"function":" var x=123;return this; "
+			},
+				{
+					"name": "customFunction2"
+				}]
 		}
 	],
 
 	"routes":{
-		"post /test" 	: { 
+		"post /test" 	: {
 			"permissions": ["test-info-manage"],
-			"action" 	: "TestController.create" 
+			"action" 	: "TestController.create"
 		},
-		"get /test" 	: { 
+		"get /test" 	: {
 			"permissions": ["test-info-access"],
-			"action" 	: "TestController.getCollection" 
+			"action" 	: "TestController.getCollection"
 		},
-		"put /test/:id" 	: { 
+		"put /test/:id" 	: {
 			"permissions": ["test-info-manage"],
-			"action" 	: "TestController.update" 
+			"action" 	: "TestController.update"
 		},
-		"delete /test/:id" 	: { 
+		"delete /test/:id" 	: {
 			"permissions": ["test-info-manage"],
-			"action" 	: "TestController.delete" 
+			"action" 	: "TestController.delete"
 		},
-		"get /test/:id" : { 
+		"get /test/:id" : {
 			"permissions": ["test-info-access"],
-			"action" 	: "TestController.getItem" 
+			"action" 	: "TestController.getItem"
 		}
 	},
 
@@ -96,14 +132,30 @@
 			"resourceUri":"/test",
 			"itemModel":{
 				"name":"Test",
-				"actions":["testAction","testAction2"]
+				"functions":[{
+					"name": "getStat",
+					"parameters":"",
+					"function":" return this.get('attr1') * this.get('attr2'); "
+				},
+					{
+						"name": "statFunc2",
+						"function":""
+					}]
 			},
 			"collectionModel":{
 				"name":"TestCollection",
-				"actions":["testCollectionAction","testCollectionAction2"]
-			}			
+				"functions":[{
+					"name": "statFunc1",
+					"parameters":"arg1,arg2",
+					"function":" var x=123;return this; "
+				},
+					{
+						"name": "statFunc2",
+						"function":""
+					}]
+			}
 		}
-	],	
+	],
 
 	"views":[
 		{
@@ -111,33 +163,9 @@
 			"displayName":"Test Management",
 			"description":"description",
 			"permission":"test-info-access"	,
-			"type":"gridForm",
+			"type":"gridView",
 			"model":"TestCollection",
 			"url":"/tests",
-			"fields":[
-				{
-					"name":"name",
-					"field":"name",
-					"displayName":"Name",
-					"className":"",
-					"type":"link",
-					"url":"/tests/:id"
-				},
-				{
-					"name":"website",
-					"field":"info.website",
-					"displayName":"website",
-					"className":"hidden-xs"
-				},
-				{
-					"name":"actions",
-					"displayName":"Action",
-					"type":"recordActions",
-					"permission":"test-info-manage"	
-				}
-			],
-			"paginator":true,
-			"filter":true,
 			"recordActions":[
 				{
 					"name":"delete",
@@ -145,8 +173,8 @@
 					"className":"hidden-xs",
 					"type":"Button",
 					"event":"click",
-					"action":"deleteRecord()",
-					"permission":"test-info-manage"	
+					"function":"deleteRecord",
+					"permission":"test-info-manage"
 				}
 			],
 			"actions":[
@@ -154,9 +182,25 @@
 					"name":"new",
 					"type":"link",
 					"url":"/tests/new",
-					"permission":"test-info-manage"	
+					"permission":"test-info-manage"
+				},
+				{
+					"name":"test",
+					"displayName":"Stat Func",
+					"type":"button",
+					"function":"statFunc2",
+					"permission":"test-info-manage"
 				}
-			]
+			],
+			"functions":[{
+				"name": "statFunc1",
+				"parameters":"arg1,arg2",
+				"function":" var x=123;return this; "
+			},
+				{
+					"name": "statFunc2",
+					"function":""
+				}]
 		},
 		{
 			"name":"testEditView",
@@ -169,7 +213,7 @@
 				{
 					"name":"name",
 					"field":"name",
-					"className":"",				
+					"className":"",
 					"validation":"",
 					"type":"text"
 				},
@@ -201,7 +245,7 @@
 					"className":"",
 					"type":"button",
 					"event":"click",
-					"action":"saveRecord()",
+					"function":"saveRecord()",
 					"gotoURL":"/tests/:id"
 				},
 				{
@@ -245,7 +289,7 @@
 					"type":"link",
 					"url":"/tests"
 				}
-			]		
+			]
 		},
 		{
 			"name":"testNewView",
@@ -257,7 +301,7 @@
 				{
 					"name":"name",
 					"field":"name",
-					"className":""			
+					"className":""
 				},
 				{
 					"name":"website",
@@ -283,8 +327,8 @@
 			"name":"test-user",
 			"displayName":"Test User",
 			"permissions":[
-				"test-info-access",	
-				"test-menu-access"			
+				"test-info-access",
+				"test-menu-access"
 			],
 			"isDefault":true
 		}]

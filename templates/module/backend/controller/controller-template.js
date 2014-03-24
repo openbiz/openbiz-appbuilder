@@ -29,11 +29,11 @@ module.exports = function(app){	{% if (BASE_CONTROLLER=='ModelController' || BAS
 		//trigger method for data delete
 		//The old record is at req.record
 		beforeDelete: function(req, res){},
-		afterDelete: function(req, res){}{% if(ACTIONS.length>0){ %},{% } %}
+		afterDelete: function(req, res){}{% if(FUNCTIONS.length>0){ %},{% } %}
 {% }else{ %}	return app.openbiz.Controller.extend({   {% } %}
-{% for(var i=0;i<ACTIONS.length;i++){ var ACTION = ACTIONS[i]; %}
+{% for(var i=0;i<FUNCTIONS.length;i++){ var FUNCTION = FUNCTIONS[i]; %}
 		//Auto generated function
-		{{ACTION}}: function(req,res){}{% if(i<(ACTIONS.length-1)){ %},{% } %}
+		{{FUNCTION.name}}: function(req,res){ {{FUNCTION.function}} }{% if(i<(FUNCTIONS.length-1)){ %},{% } %}
 {% } %}
 	});
 }

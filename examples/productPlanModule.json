@@ -1,0 +1,618 @@
+{
+    "type": "module",
+    "app": {
+        "name": "dss",
+        "displayName": "决策支持系统",
+        "url": "/dss"
+    },
+    "name": "productPlan",
+    "displayName": "商品计划",
+    "models": [
+        {
+            "name": "ProductPlan",
+            "collection": "dss_product_plan",
+            "schema": {
+                "bandno": {
+                    "type": "String",
+                    "required": true,
+                    "unique": true
+                },
+                "brand": {
+                    "type": "String"
+                },
+                "year": {
+                    "type": "String",
+                    "required": true
+                },
+                "quarter": {
+                    "type": "String"
+                },
+                "topic": {
+                    "type": "String"
+                },
+                "publicDate": {
+                    "type": "Date",
+                    "required": true
+                },
+                "researchSubmitDate": {
+                    "type": "Date",
+                    "required": true
+                },
+                "headSubmitDate": {
+                    "type": "Date"
+                },
+                "tailSubmitDate": {
+                    "type": "Date"
+                },
+                "styleCategoryPlan": [
+                    {
+                        "styleCategory": {
+                            "type": "String",
+                            "required": true,
+                            "unique": true
+                        },
+                        "planCategoryCount": {
+                            "type": "Number",
+                            "required": true
+                        },
+                        "planQuantity": {
+                            "type": "Number",
+                            "required": true
+                        },
+                        "planUnitPrice": {
+                            "type": "Number",
+                            "required": true
+                        },
+                        "oldCategoryCount": {
+                            "type": "Number"
+                        },
+                        "oldQuantity": {
+                            "type": "Number"
+                        },
+                        "newUnitPrice": {
+                            "type": "Number"
+                        }
+                    }
+                ]
+            },
+            "functions": {
+                "statics": [],
+                "methods": []
+            }
+        }
+    ],
+    "controllers": [
+        {
+            "name": "ProductPlanController",
+            "model": "ProductPlan",
+            "type": "ModelController",
+            "functions": []
+        },
+        {
+            "name": "ProductPlanStyleCategroyController",
+            "model": "ProductPlan",
+            "path": "styleCategoryPlan",
+            "type": "ModelSubdocController",
+            "functions": []
+        }
+    ],
+    "routes": {
+        "post /product-plans": {
+            "permissions": ["dss-product-plan-manage"],
+            "action": "ProductPlanController.create"
+        },
+        "post /product-plans/:id/style-category-plans": {
+            "permissions": ["dss-product-plan-manage"],
+            "action": "ProductPlanStyleCategroyController.create"
+        },
+        "get /product-plans": {
+            "permissions": ["dss-product-plan-access"],
+            "action": "ProductPlanController.getCollection"
+        },
+        "get /product-plans/:id/style-category-plans": {
+            "permissions": ["dss-product-plan-access"],
+            "action": "ProductPlanStyleCategroyController.getCollection"
+        },
+        "put /product/plan/:id": {
+            "permissions": ["dss-product-plan-manage"],
+            "action": "ProductPlanController.update"
+        },
+        "put /product-plans/:id/style-category-plans/:subId": {
+            "permissions": ["dss-product-plan-manage"],
+            "action": "ProductPlanStyleCategroyController.update"
+        },
+        "delete /product/plan/:id": {
+            "permissions": ["dss-product-plan-manage"],
+            "action": "ProductPlanController.delete"
+        },
+        "delete /product-plans/:id/style-category-plans/:subId": {
+            "permissions": ["dss-product-plan-manage"],
+            "action": "ProductPlanStyleCategroyController.delete"
+        },
+        "get /product/plan/:id": {
+            "permissions": ["dss-product-plan-access"],
+            "action": "ProductPlanController.getItem"
+        },
+        "get /product-plans/:id/style-category-plans/:subId": {
+            "permissions": ["dss-product-plan-access"],
+            "action": "ProductPlanStyleCategroyController.create"
+        }
+    },
+    "clientModels": [
+        {
+            "resourceUri": "/product-plans",
+            "itemModel": {
+                "name": "ProductPlan",
+                "functions": [
+                    {
+                        "name":"getSumPlanCategoryCount",
+                        "parameters":"",
+                        "function":"var result=0;for(var i=0;i<this.get('planCategoryCount').length;i++){result+=(this.get('planCategoryCount'))[i].planCategoryCount };return result;"
+                    },
+                    {
+                        "name":"getSumPlanQuantity",
+                        "parameters":"",
+                        "function":""
+                    },
+                    {
+                        "name":"getSumPlanAmount",
+                        "parameters":"",
+                        "function":""
+                    },
+                    {
+                        "name":"getSumOldCategoryCount",
+                        "parameters":"",
+                        "function":""
+                    },
+                    {
+                        "name":"getSumOldQuantity",
+                        "parameters":"",
+                        "function":""
+                    },
+                    {
+                        "name":"getSumOldAmount",
+                        "parameters":"",
+                        "function":""
+                    },
+                    {
+                        "name":"getSumNewCategoryCount",
+                        "parameters":"",
+                        "function":""
+                    },
+                    {
+                        "name":"getSumNewQuantity",
+                        "parameters":"",
+                        "function":""
+                    },
+                    {
+                        "name":"getSumNewAmount",
+                        "parameters":"",
+                        "function":""
+                    }
+                ]
+                //"getSumPlanQuantity", "getSumOldAmount", "getSumOldQuantity", "getSumNewAmount", "getSumNewQuantity"]
+            },
+            "collectionModel": {
+                "name": "ProductPlanCollection",
+                "fuctions": []
+            }
+        },
+        {
+            "resourceUri": "/product-plans/:id/style-category-plans",
+            "itemModel": {
+                "name": "ProductPlanStyleCategory",
+                "fuctions": [
+                    {
+                        "name": "getPlanAmount",
+                        "parameters": "",
+                        "function": "return this.get('planQuantity') * this.get('planUnitPrice');"
+                    },
+                    {
+                        "name": "getNewCategoryCount",
+                        "parameters": "",
+                        "function": "return this.get('planCategoryCount') - this.get('oldCategoryCount');"
+                    },
+                    {
+                        "getNewQuantity": "getNewPlanQuantity",
+                        "parameters": "",
+                        "function": "return this.get('planQuantity') - this.get('oldQuantity');"
+                    },
+                    {
+                        "getNewQuantity": "getNewAmount",
+                        "parameters": "",
+                        "function": "return (this.get('planQuantity') - this.get('oldQuantity')) * this.get('newPlanUnitPrice');"
+                    }
+                ]
+            },
+            "collectionModel": {
+                "name": "ProductPlanStyleCategoryCollection",
+                "fuctions": []
+            }
+        }
+    ],
+    "views": [
+        {
+            "name": "productPlanListView",
+            "displayName": "Product Plan",
+            "description": "商品计划",
+            "permission": "dss-product-plan-access",
+            "type": "gridForm",
+            "model": "ProductPlan",
+            "url": "/product-plans",
+            "fields": [
+                {
+                    "name": "bandno",
+                    "field": "bandno",
+                    "displayName": "波段编号",
+                    "className": "",
+                    "type": "link",
+                    "url": "/product-plans/:id"
+                },
+                {
+                    "name": "brand",
+                    "field": "brand",
+                    "displayName": "品牌",
+                    "className": "hidden-xs"
+                },
+                {
+                    "name": "year",
+                    "field": "year",
+                    "displayName": "年度",
+                    "className": "hidden-xs"
+                },
+                {
+                    "name": "quarter",
+                    "field": "quarter",
+                    "displayName": "季度",
+                    "className": "hidden-xs"
+                },
+                {
+                    "name": "topic",
+                    "field": "topic",
+                    "displayName": "主题",
+                    "className": "hidden-xs"
+                },
+                {
+                    "name": "publicDate",
+                    "field": "publicData",
+                    "displayName": "上市日期",
+                    "default": "<%= Date.now %>"
+                },
+                {
+                    "name": "researchSubmitDate",
+                    "field": "researchSubmitDate",
+                    "displayName": "研发交期",
+                    "className": "hidden-xs"
+                },
+                {
+                    "name": "headSubmitDate",
+                    "field": "headSubmitDate",
+                    "displayName": "头单截止",
+                    "hint": "头单截至入库日期",
+                    "className": "hidden-xs"
+                },
+                {
+                    "name": "headSubmitDate",
+                    "field": "headSubmitDate",
+                    "displayName": "尾单截止",
+                    "className": "hidden-xs"
+                },
+                ,
+                {
+                    "name": "planQuantity",
+                    "field": "<%= this.model.getSumPlanQuantity %>",
+                    "displayName": "计划款量"
+                }
+            ],
+            "paginator": true,
+            "filter": true,
+            "recordActions": [
+                {
+                    "name": "delete",
+                    "displayName": "Delete",
+                    "type": "button",
+                    "event": "click",
+                    "action": "deleteRecord",
+                    "permission": "dss-product-plan-manage"
+                }
+            ]
+        },
+        {
+            "name": "productPlanEditView",
+            "displayName": "商品计划修改",
+            "type": "editForm",
+            "permission": "dss-product-plan-manage",
+            "model": "ProductPlan",
+            "url": "/product-plans/:id/edit",
+            "fields": [
+                {
+                    "name": "bandno",
+                    "field": "bandno",
+                    "displayName": "波段编号",
+                    "className": "",
+                    "type": "text"
+                },
+                {
+                    "name": "brand",
+                    "field": "brand",
+                    "displayName": "品牌",
+                    "className": "",
+                    "type": "select",
+                    "dataSource": {
+                        "type": "model",
+                        "model": "OtherCollection",
+                        "path": "account.brands",
+                        "key": "id",
+                        "value": "displayName"
+                    }
+                },
+                {
+                    "name": "year",
+                    "field": "year",
+                    "displayName": "年度",
+                    "className": "",
+                    "type": "text"
+                },
+                {
+                    "name": "quarter",
+                    "field": "quarter",
+                    "displayName": "季度",
+                    "className": "",
+                    "type": "select",
+                    "dataSource": {
+                        "type": "model",
+                        "model": "OtherCollection",
+                        "path": "account.quarters",
+                        "key": "id",
+                        "value": "displayName"
+                    }
+                },
+                {
+                    "name": "topic",
+                    "field": "topic",
+                    "displayName": "主题",
+                    "className": "",
+                    "type": "text"
+                },
+                {
+                    "name": "publicDate",
+                    "field": "publicData",
+                    "displayName": "上市日期",
+                    "className": "",
+                    "type": "date"
+                },
+                {
+                    "name": "researchSubmitDate",
+                    "field": "researchSubmitDate",
+                    "displayName": "研发交期",
+                    "className": "",
+                    "type": "date"
+                },
+                {
+                    "name": "headSubmitDate",
+                    "field": "headSubmitDate",
+                    "displayName": "头单截止",
+                    "className": "",
+                    "type": "date"
+                },
+                {
+                    "name": "headSubmitDate",
+                    "field": "headSubmitDate",
+                    "displayName": "尾单截止",
+                    "className": "",
+                    "type": "date"
+                }
+            ],
+            "actions": [
+                {
+                    "name": "saveRecord",
+                    "className": "",
+                    "type": "button",
+                    "event": "click",
+                    "action": "saveRecord",
+                    "gotoURL": "/product/plans/:id"
+                },
+                {
+                    "name": "cancel",
+                    "className": "",
+                    "type": "link",
+                    "url": "/product/plans"
+                }
+            ]
+        },
+        {
+            "name": "productPlanDetailView",
+            "displayName": "商品计划详情",
+            "type": "detailForm",
+            "url": "/plans/:id",
+            "model": "ProductPlan",
+            "fields": [
+                {
+                    "name": "bandno",
+                    "field": "bandno",
+                    "displayName": "波段编号"
+                },
+                {
+                    "name": "brand",
+                    "field": "brand",
+                    "displayName": "品牌"
+                },
+                {
+                    "name": "year",
+                    "field": "year",
+                    "displayName": "年度"
+                },
+                {
+                    "name": "quarter",
+                    "field": "quarter",
+                    "displayName": "季度"
+                },
+                {
+                    "name": "topic",
+                    "field": "topic",
+                    "displayName": "主题"
+                },
+                {
+                    "name": "publicDate",
+                    "field": "publicData",
+                    "displayName": "上市日期"
+                },
+                {
+                    "name": "researchSubmitDate",
+                    "field": "researchSubmitDate",
+                    "displayName": "研发交期"
+                },
+                {
+                    "name": "headSubmitDate",
+                    "field": "headSubmitDate",
+                    "displayName": "头单截止"
+                },
+                {
+                    "name": "headSubmitDate",
+                    "field": "headSubmitDate",
+                    "displayName": "尾单截止"
+                }
+            ],
+            "actions": [
+                {
+                    "name": "deleteRecord",
+                    "className": "",
+                    "type": "button",
+                    "event": "click",
+                    "action": "saveRecord",
+                    "gotoURL": "/product/plans/:id"
+                },
+                {
+                    "name": "back",
+                    "className": "",
+                    "type": "link",
+                    "url": "/product/plans"
+                }
+            ]
+        },
+        {
+            "name": "productPlanNewView",
+            "displayName": "Create a Test Record",
+            "type": "addForm",
+            "model": "ProductPlan",
+            "url": "/product/plans/new",
+            "fields": [
+                {
+                    "name": "bandno",
+                    "field": "bandno",
+                    "displayName": "波段编号",
+                    "className": "",
+                    "type": "text"
+                },
+                {
+                    "name": "brand",
+                    "field": "brand",
+                    "displayName": "品牌",
+                    "className": "",
+                    "type": "select",
+                    "dataSource": {
+                        "type": "model",
+                        "model": "OtherCollection",
+                        "path": "account.brands",
+                        "key": "id",
+                        "value": "displayName"
+                    }
+                },
+                {
+                    "name": "year",
+                    "field": "year",
+                    "displayName": "年度",
+                    "className": "",
+                    "type": "text"
+                },
+                {
+                    "name": "quarter",
+                    "field": "quarter",
+                    "displayName": "季度",
+                    "className": "",
+                    "type": "select",
+                    "dataSource": {
+                        "type": "model",
+                        "model": "OtherCollection",
+                        "path": "account.quarters",
+                        "key": "id",
+                        "value": "displayName"
+                    }
+                },
+                {
+                    "name": "topic",
+                    "field": "topic",
+                    "displayName": "主题",
+                    "className": "",
+                    "type": "text"
+                },
+                {
+                    "name": "publicDate",
+                    "field": "publicData",
+                    "displayName": "上市日期",
+                    "className": "",
+                    "type": "date"
+                },
+                {
+                    "name": "researchSubmitDate",
+                    "field": "researchSubmitDate",
+                    "displayName": "研发交期",
+                    "className": "",
+                    "type": "date"
+                },
+                {
+                    "name": "headSubmitDate",
+                    "field": "headSubmitDate",
+                    "displayName": "头单截止",
+                    "className": "",
+                    "type": "date"
+                },
+                {
+                    "name": "headSubmitDate",
+                    "field": "headSubmitDate",
+                    "displayName": "尾单截止",
+                    "className": "",
+                    "type": "date"
+                }
+            ],
+            "actions": [
+                {
+                    "name": "saveRecord",
+                    "className": "",
+                    "type": "button",
+                    "event": "click",
+                    "action": "saveRecord",
+                    "gotoURL": "/product/plans/:id"
+                },
+                {
+                    "name": "cancel",
+                    "className": "",
+                    "type": "link",
+                    "url": "/product/plans"
+                }
+            ]
+        }
+    ],
+
+    "roles": [
+        {
+            "name": "dss-product-manager",
+            "displayName": "商品管理",
+            "permissions": [
+                "dss-product-plan-access",
+                "dss-product-plan-manage",
+                "plan-menu-access"
+            ],
+            "isDefault": false
+        },
+        {
+            "name": "dss-product-user",
+            "displayName": "商品用户",
+            "permissions": [
+                "dss-product-plan-access",
+                "plan-menu-access"
+            ],
+            "isDefault": true
+        }
+    ]
+}

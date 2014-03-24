@@ -1,0 +1,18 @@
+ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i];  %}{% 		if(typeof node.url != 'undefined' && node.url){ %}
+	li
+		a(href!="{{ node.url }}") <%= breadcrumb.{{node.name}} %>{% 		} else { %}
+	li.active <%= breadcrumb.{{node.name}} %>{% 		} %}{% } %}
+#content
+	.row
+		.col-md-12
+			section.panel.wizard-form.corner-flip
+				header.panel-heading
+					h2 <%= viewTitle%>
+					{%if(typeof viewDescription=='string'){%}
+					p <%= viewDescription%>
+					{%}%}
+				.panel-body
+					.data-grid
+				.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var action = ACTIONS[i];  %}
+					button.btn.btn-theme.{{action.selector}}
+						| {{action.localeName}} {% } %}
