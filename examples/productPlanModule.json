@@ -145,52 +145,51 @@
                 "name": "ProductPlan",
                 "functions": [
                     {
-                        "name":"getSumPlanCategoryCount",
-                        "parameters":"",
-                        "function":"var result=0;for(var i=0;i<this.get('planCategoryCount').length;i++){result+=(this.get('planCategoryCount'))[i].planCategoryCount };return result;"
+                        "name": "getSumPlanCategoryCount",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('planCategoryCount').length;i++){result+=(this.get('planCategoryCount'))[i] };return result;"
                     },
                     {
-                        "name":"getSumPlanQuantity",
-                        "parameters":"",
-                        "function":""
+                        "name": "getSumPlanQuantity",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('planQuantity').length;i++){result+=(this.get('planQuantity'))[i] };return result;"
                     },
                     {
-                        "name":"getSumPlanAmount",
-                        "parameters":"",
-                        "function":""
+                        "name": "getSumPlanAmount",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('planAmount').length;i++){result+=(this.get('planAmount'))[i] };return result;"
                     },
                     {
-                        "name":"getSumOldCategoryCount",
-                        "parameters":"",
-                        "function":""
+                        "name": "getSumOldCategoryCount",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('oldCategoryCount').length;i++){result+=(this.get('oldCategoryCount'))[i] };return result;"
                     },
                     {
-                        "name":"getSumOldQuantity",
-                        "parameters":"",
-                        "function":""
+                        "name": "getSumOldQuantity",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('oldQuantity').length;i++){result+=(this.get('oldQuantity'))[i] };return result;"
                     },
                     {
-                        "name":"getSumOldAmount",
-                        "parameters":"",
-                        "function":""
+                        "name": "getSumOldAmount",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('oldAmount').length;i++){result+=(this.get('oldAmount'))[i] };return result;"
                     },
                     {
-                        "name":"getSumNewCategoryCount",
-                        "parameters":"",
-                        "function":""
+                        "name": "getSumNewCategoryCount",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('planPlanQuantity').length;i++){result+=(this.get('planPlanQuantity'))[i] };return result;"
                     },
                     {
-                        "name":"getSumNewQuantity",
-                        "parameters":"",
-                        "function":""
+                        "name": "getSumNewQuantity",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('newQuantity').length;i++){result+=(this.get('newQuantity'))[i] };return result;"
                     },
                     {
-                        "name":"getSumNewAmount",
-                        "parameters":"",
-                        "function":""
+                        "name": "getSumNewAmount",
+                        "parameters": "",
+                        "function": "var result=0;for(var i=0;i<this.get('newAmount').length;i++){result+=(this.get('newAmount'))[i] };return result;"
                     }
                 ]
-                //"getSumPlanQuantity", "getSumOldAmount", "getSumOldQuantity", "getSumNewAmount", "getSumNewQuantity"]
             },
             "collectionModel": {
                 "name": "ProductPlanCollection",
@@ -276,7 +275,8 @@
                     "name": "publicDate",
                     "field": "publicData",
                     "displayName": "上市日期",
-                    "default": "<%= Date.now %>"
+                    "hint": "",
+                    "default": ""
                 },
                 {
                     "name": "researchSubmitDate",
@@ -297,11 +297,25 @@
                     "displayName": "尾单截止",
                     "className": "hidden-xs"
                 },
-                ,
+                {
+                    "name": "planCategoryCount",
+                    "field": "<%= this.model.getSumPlanCategoryCount %>",
+                    "displayName": "计划款量"
+                },
                 {
                     "name": "planQuantity",
                     "field": "<%= this.model.getSumPlanQuantity %>",
-                    "displayName": "计划款量"
+                    "displayName": "计划数量"
+                },
+                {
+                    "name": "planQuantity",
+                    "field": "<%= this.model.getSumNewCategoryCount %>",
+                    "displayName": "新品款量"
+                },
+                {
+                    "name": "planQuantity",
+                    "field": "<%= this.model.getSumNewPlanQuantity %>",
+                    "displayName": "新品数量"
                 }
             ],
             "paginator": true,
@@ -310,10 +324,38 @@
                 {
                     "name": "delete",
                     "displayName": "Delete",
-                    "type": "button",
+                    "className": "hidden-xs",
+                    "type": "Button",
                     "event": "click",
-                    "action": "deleteRecord",
+                    "function": "deleteRecord",
                     "permission": "dss-product-plan-manage"
+                }
+            ],
+            "actions": [
+                {
+                    "name": "new",
+                    "type": "link",
+                    "url": "/tests/new",
+                    "className": "btn-theme x-large",
+                    "permission": "test-info-manage"
+                },
+                {
+                    "name": "test",
+                    "displayName": "Stat Func",
+                    "type": "button",
+                    "function": "statFunc2",
+                    "permission": "test-info-manage"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "statFunc1",
+                    "parameters": "arg1,arg2",
+                    "function": " var x=123;return this; "
+                },
+                {
+                    "name": "statFunc2",
+                    "function": ""
                 }
             ]
         },
@@ -410,13 +452,13 @@
                     "type": "button",
                     "event": "click",
                     "action": "saveRecord",
-                    "gotoURL": "/product/plans/:id"
+                    "gotoURL": "/product-plans/:id"
                 },
                 {
                     "name": "cancel",
                     "className": "",
                     "type": "link",
-                    "url": "/product/plans"
+                    "url": "/product-plans"
                 }
             ]
         },
@@ -430,47 +472,56 @@
                 {
                     "name": "bandno",
                     "field": "bandno",
-                    "displayName": "波段编号"
+                    "displayName": "波段编号",
+                    "type": "label"
                 },
                 {
                     "name": "brand",
                     "field": "brand",
-                    "displayName": "品牌"
+                    "displayName": "品牌",
+                    "type": "label"
                 },
                 {
                     "name": "year",
                     "field": "year",
-                    "displayName": "年度"
+                    "displayName": "年度",
+                    "type": "label"
                 },
                 {
                     "name": "quarter",
                     "field": "quarter",
-                    "displayName": "季度"
+                    "displayName": "季度",
+                    "type": "label"
                 },
                 {
                     "name": "topic",
                     "field": "topic",
-                    "displayName": "主题"
+                    "displayName": "主题",
+                    "type": "label"
                 },
                 {
                     "name": "publicDate",
                     "field": "publicData",
-                    "displayName": "上市日期"
+                    "displayName": "上市日期",
+                    "type": "label"
                 },
                 {
                     "name": "researchSubmitDate",
                     "field": "researchSubmitDate",
-                    "displayName": "研发交期"
+                    "displayName": "研发交期",
+                    "type": "label"
                 },
                 {
                     "name": "headSubmitDate",
                     "field": "headSubmitDate",
-                    "displayName": "头单截止"
+                    "displayName": "头单截止",
+                    "type": "label"
                 },
                 {
                     "name": "headSubmitDate",
                     "field": "headSubmitDate",
-                    "displayName": "尾单截止"
+                    "displayName": "尾单截止",
+                    "type": "label"
                 }
             ],
             "actions": [
@@ -480,13 +531,13 @@
                     "type": "button",
                     "event": "click",
                     "action": "saveRecord",
-                    "gotoURL": "/product/plans/:id"
+                    "gotoURL": "/product-plans/:id"
                 },
                 {
                     "name": "back",
                     "className": "",
                     "type": "link",
-                    "url": "/product/plans"
+                    "url": "/product-plans"
                 }
             ]
         },
@@ -582,13 +633,13 @@
                     "type": "button",
                     "event": "click",
                     "action": "saveRecord",
-                    "gotoURL": "/product/plans/:id"
+                    "gotoURL": "/product-plans/:id"
                 },
                 {
                     "name": "cancel",
                     "className": "",
                     "type": "link",
-                    "url": "/product/plans"
+                    "url": "/product-plans"
                 }
             ]
         }
