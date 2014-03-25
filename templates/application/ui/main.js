@@ -6,8 +6,8 @@ define([ 'i18n!./nls/locale'
         ) {
         return openbiz.Application.extend({
             name: '{{APP_NAME}}',
-            appUrl: null,
-            baseUrl: null,
+            appUrl  : REPLACE_APPURL,
+            baseUrl : REPLACE_BASEURL,
             modules: { 
                 /*MODULE_NAME_LIST_PAIRS*/
             },
