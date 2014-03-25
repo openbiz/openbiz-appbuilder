@@ -11,7 +11,11 @@ define(['text!./{{VIEW_NAME}}.json',
 		el: '#main',
 		collection: dataCollection,
 		template: templateData,
+<<<<<<< HEAD
 		metadata: metadata,
+=======
+		metadata: metadata,		
+>>>>>>> 0d2d1fec50e39c8a6a8e87a7867c43cd73767552
 		events:{},	
 		elements:{ 
 			//custom action elements 
