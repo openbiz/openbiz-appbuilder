@@ -20,7 +20,6 @@ define(['text!./{{VIEW_NAME}}.json',
 			afterDeleteRecord:function(){}{% if(FUNCTIONS.length>0){ %},{% } %}
 		{% for(var i=0;i<FUNCTIONS.length;i++){ var FUNCTION = FUNCTIONS[i]; %}
 			//Auto generated function
-			{{FUNCTION.name}}: function(req,res){ {{FUNCTION.function}} }{% if(i<(FUNCTIONS.length-1)){ %},{% } %}
-			{% } %}
+			{{FUNCTION.name}}: function({{FUNCTION.parameters}}){ {{FUNCTION.function}} }{% if(i<(FUNCTIONS.length-1)){ %},{% } %}{% } %}
 	});
 });
