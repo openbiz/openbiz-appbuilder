@@ -2,11 +2,15 @@
 module.exports = function(app)
 {
     var mongoose = app.openbiz.mongoose;
+    var features = {{MODEL_FEATURES}};
+    var defaults = {{MODEL_META_DEFAULTS}};
     var schema = new mongoose.Schema(
-    app.openbiz.MetadataParser.call(app.openbiz,__filename.replace(/\.js$/i,'.json')),
+    app.openbiz.MetadataParser.call(app.openbiz,__filename.replace(/\.js$/i,'.json'),features,defaults),
     {
         collection: '{{MODEL_COLLECTION}}'
     });
+
+    schema.features = features;
     {% for(var i=0;i<MODEL_ACTION_STATICS.length;i++){ var FUNCTION = MODEL_ACTION_STATICS[i]; %}
     //Auto generated function
     schema.statics.{{FUNCTION.name}}: function({{FUNCTION.parameters}}){
