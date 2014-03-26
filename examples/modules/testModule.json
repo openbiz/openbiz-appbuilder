@@ -50,6 +50,16 @@
 				}
 			}
 		},
+		"features":{
+			"enableMetadata":true,
+			"enableDataACL":true,
+			"enableLogDataChange":true,
+			"defaults":{
+				"visibility":{
+					"scope":"ACCOUNT"
+				}
+			}
+		},
 		"functions":{
 			"statics":[
 				{
