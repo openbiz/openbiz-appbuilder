@@ -1,2 +1,2 @@
-.form-group
-	textarea.form-control(name="{{field.selector}}",type="text", {{field.validation}}{% if (field.validation){ %},{% } %})
+					.form-group
+						textarea.form-control(name="{{selector}}"{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value != "<%= reocrd.{{field}}%>"{%}%})

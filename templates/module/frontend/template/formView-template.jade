@@ -5,9 +5,13 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 #content
 	.row
 		.col-md-12
+			.panel-heading
+				h2 <%= viewTitle%>
+				{%if(typeof viewDescription=='string'){%}
+				p <%= viewDescription%>
+				{%}%}
 			.panel-body
-				.form.record-form(role="form",parsley-validate,novalidate="novalidate")
-					{% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  %}
-					{{ELEMENT}}{% } %}	
+				.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  %}
+{{ELEMENT}}{% } %}
 			.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
-				{{ACTION}}{% } %}
+{{ACTION}}{% } %}

@@ -7,6 +7,7 @@ module.exports = function(app)
     var schemaMeta = app.openbiz.ModelService.applyMetadata.call(app.openbiz,
         app.openbiz.MetadataParser.call(app.openbiz,__filename.replace(/\.js$/i,'.json'))
         ,features,defaults)
+	{}
     var schema = new mongoose.Schema(schemaMeta,{
         collection: '{{MODEL_COLLECTION}}'
     });

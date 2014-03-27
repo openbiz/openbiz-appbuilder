@@ -1,0 +1,5 @@
+					.input-group.date.form_datetime(data-date-format='yyyy-MM-dd', data-picker-position='bottom-left')
+						input.form-control(name="{{selector}}",type='text'{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value != "<%= reocrd.{{field}}%>"{%}%})
+						span.input-group-btn
+							button.btn.btn-default(type='button')
+								i.fa.fa-calendar
