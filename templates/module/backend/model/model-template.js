@@ -4,9 +4,10 @@ module.exports = function(app)
     var mongoose = app.openbiz.mongoose;
     var features = {{MODEL_FEATURES}};
     var defaults = {{MODEL_META_DEFAULTS}};
-    var schema = new mongoose.Schema(
-    app.openbiz.MetadataParser.call(app.openbiz,__filename.replace(/\.js$/i,'.json'),features,defaults),
-    {
+    var schemaMeta = app.openbiz.ModelService.applyMetadata.call(app.openbiz,
+        app.openbiz.MetadataParser.call(app.openbiz,__filename.replace(/\.js$/i,'.json'))
+        ,features,defaults)
+    var schema = new mongoose.Schema(schemaMeta,{
         collection: '{{MODEL_COLLECTION}}'
     });
 
