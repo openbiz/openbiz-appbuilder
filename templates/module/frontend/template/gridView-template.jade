@@ -13,8 +13,5 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 					{%}%}
 				.panel-body
 					.data-grid
-				.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var action = ACTIONS[i];  %}{% if(action.type == 'link') {%}
-					a.btn{{action.selector}}{{action.className}}(href='#!/backend/{{APP_NAME}}{{action.url}}')
-						| {{action.localeName}}{% } %}{% if(action.type == 'button') {%}
-					button.btn{{action.selector}}{{action.className}}
-						| {{action.localeName}}{% } %}{% } %}
+				.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
+					{{ACTION}}{% } %}
