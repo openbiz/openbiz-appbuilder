@@ -1,7 +1,7 @@
 ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i];  %}{% 		if(typeof node.url != 'undefined' && node.url){ %}
 	li
-		a(href!="{{ node.url }}") <%= breadcrumb.{{node.name}} %>{% 		} else { %}
-	li.active <%= breadcrumb.{{node.name}} %>{% 		} %}{% } %}
+		a(href!="{{ node.url }}") <%= locale.breadcrumb.{{node.name}} %>{% 		} else { %}
+	li.active <%= locale.breadcrumb.{{node.name}} %>{% 		} %}{% } %}
 #content
 	.row
 		.panel-heading
