@@ -1,0 +1,4 @@
+						.input-group
+							span.input-group-addon ¥
+							input.form-control(name="{{selector}}",type="text"{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value != "<%= reocrd.{{field}}%>"{%}%})
+							span.input-group-addon .00
