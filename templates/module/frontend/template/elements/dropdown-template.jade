@@ -1,6 +1,22 @@
-option(value='Australia') Australia
-	option(value='China') China
-	option(value='Japan') Japan
-	option(value='Thailand', selected='') Thailand
-	option(value='United States') United States
-	option(value='United Kingdom') United Kingdom
+						select.selectpicker.form-control(style='display: none;')
+							option(value='0') 国际码
+							option(value='1') 中国码
+							option(value='2') 欧码
+							.btn-group.bootstrap-select.form-control
+								button.btn.dropdown-toggle.selectpicker.btn-default(data-toggle='dropdown', type='button',style='padding-bottom:25px;min-height:34px')
+									.filter-option.pull-left  国际码
+									.caret
+								.dropdown-menu.open(style='max-height: 318px; overflow: hidden; min-height: 92px;')
+									ul.dropdown-menu.inner.selectpicker(role='menu', style='max-height: 306px; overflow-y: auto; min-height: 80px;')
+										li.selected(rel='0')
+											a(style='', tabindex='0')
+												span.text 国际码
+												i.glyphicon.glyphicon-ok.icon-ok.check-mark
+										li(rel='1')
+											a(style='', tabindex='0')
+												span.text 中国码
+												i.glyphicon.glyphicon-ok.icon-ok.check-mark
+										li(rel='2')
+											a(style='', tabindex='0')
+												span.text 欧码
+												i.glyphicon.glyphicon-ok.icon-ok.check-mark
