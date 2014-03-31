@@ -1,22 +1,38 @@
-						select.selectpicker.form-control(style='display: none;')
-							option(value='0') 国际码
-							option(value='1') 中国码
-							option(value='2') 欧码
-							.btn-group.bootstrap-select.form-control
-								button.btn.dropdown-toggle.selectpicker.btn-default(data-toggle='dropdown', type='button',style='padding-bottom:25px;min-height:34px')
-									.filter-option.pull-left  国际码
+						.form-group
+							select.selectpicker.form-control.show-menu-arrow.show-tick(style='display: none;')
+								option(value='Australia') Australia
+								option(value='China') China
+								option(value='Japan') Japan
+								option(value='Thailand', selected='') Thailand
+								option(value='United States') United States
+								option(value='United Kingdom') United Kingdom
+							.btn-group.bootstrap-select.form-control.show-menu-arrow.show-tick
+								button.btn.dropdown-toggle.selectpicker.btn-default(type='button', data-toggle='dropdown')
+									.filter-option.pull-left China
 									.caret
-								.dropdown-menu.open(style='max-height: 318px; overflow: hidden; min-height: 92px;')
-									ul.dropdown-menu.inner.selectpicker(role='menu', style='max-height: 306px; overflow-y: auto; min-height: 80px;')
-										li.selected(rel='0')
-											a(style='', tabindex='0')
-												span.text 国际码
+								.dropdown-menu.open(style='max-height: 524px; overflow: hidden; min-height: 92px;')
+									ul.dropdown-menu.inner.selectpicker(role='menu', style='max-height: 512px; overflow-y: auto; min-height: 80px;')
+										li(rel='0')
+											a(tabindex='0', style='')
+												span.text Australia
 												i.glyphicon.glyphicon-ok.icon-ok.check-mark
-										li(rel='1')
-											a(style='', tabindex='0')
-												span.text 中国码
+										li.selected(rel='1')
+											a(tabindex='0', style='')
+												span.text China
 												i.glyphicon.glyphicon-ok.icon-ok.check-mark
 										li(rel='2')
-											a(style='', tabindex='0')
-												span.text 欧码
+											a(tabindex='0', style='')
+												span.text Japan
+												i.glyphicon.glyphicon-ok.icon-ok.check-mark
+										li(rel='3')
+											a(tabindex='0', style='')
+												span.text Thailand
+												i.glyphicon.glyphicon-ok.icon-ok.check-mark
+										li(rel='4')
+											a(tabindex='0', style='')
+												span.text United States
+												i.glyphicon.glyphicon-ok.icon-ok.check-mark
+										li(rel='5')
+											a(tabindex='0', style='')
+												span.text United Kingdom
 												i.glyphicon.glyphicon-ok.icon-ok.check-mark

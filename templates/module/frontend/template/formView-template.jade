@@ -5,9 +5,9 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 #content
 	.row
 		.panel-heading
-			h2 <%= viewTitle%>
+			h2 <%= locale.viewTitle%>
 			{%if(typeof viewDescription=='string'){%}
-			p <%= viewDescription%>
+			p <%= locale.viewDescription%>
 			{%}%}
 		.panel-body
 			.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}

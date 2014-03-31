@@ -1,3 +1,4 @@
+						label.control-label {{displayName}}
 						.input-group.date.form_datetime(data-date-format='yyyy-MM-dd', data-picker-position='bottom-left')
 							input.form-control(name="{{selector}}",type='text'{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value != "<%= reocrd.{{field}}%>"{%}%})
 							span.input-group-btn
