@@ -1,38 +1,23 @@
-						.form-group
-							select.selectpicker.form-control.show-menu-arrow.show-tick(style='display: none;')
-								option(value='Australia') Australia
-								option(value='China') China
-								option(value='Japan') Japan
-								option(value='Thailand', selected='') Thailand
-								option(value='United States') United States
-								option(value='United Kingdom') United Kingdom
-							.btn-group.bootstrap-select.form-control.show-menu-arrow.show-tick
-								button.btn.dropdown-toggle.selectpicker.btn-default(type='button', data-toggle='dropdown')
-									.filter-option.pull-left China
+							label.control-label {{displayName}}
+							select.selectpicker.form-control(style='display: none;')
+								option(value='0') 必须按单裁剪
+								option(value='1') 可少裁
+								option(value='2') 可多裁
+							.btn-group.bootstrap-select.form-control(style='width:260px')
+								button.btn.dropdown-toggle.selectpicker.btn-default(data-toggle='dropdown', type='button')
+									.filter-option.pull-left  必须按单裁剪
 									.caret
-								.dropdown-menu.open(style='max-height: 524px; overflow: hidden; min-height: 92px;')
-									ul.dropdown-menu.inner.selectpicker(role='menu', style='max-height: 512px; overflow-y: auto; min-height: 80px;')
-										li(rel='0')
-											a(tabindex='0', style='')
-												span.text Australia
+								.dropdown-menu.open
+									ul.dropdown-menu.inner.selectpicker
+										li.selected(rel='0')
+											a(style='', tabindex='0')
+												span.text 必须按单裁剪
 												i.glyphicon.glyphicon-ok.icon-ok.check-mark
-										li.selected(rel='1')
-											a(tabindex='0', style='')
-												span.text China
+										li(rel='1')
+											a(style='', tabindex='0')
+												span.text 可少裁
 												i.glyphicon.glyphicon-ok.icon-ok.check-mark
 										li(rel='2')
-											a(tabindex='0', style='')
-												span.text Japan
-												i.glyphicon.glyphicon-ok.icon-ok.check-mark
-										li(rel='3')
-											a(tabindex='0', style='')
-												span.text Thailand
-												i.glyphicon.glyphicon-ok.icon-ok.check-mark
-										li(rel='4')
-											a(tabindex='0', style='')
-												span.text United States
-												i.glyphicon.glyphicon-ok.icon-ok.check-mark
-										li(rel='5')
-											a(tabindex='0', style='')
-												span.text United Kingdom
+											a(style='', tabindex='0')
+												span.text 可多裁
 												i.glyphicon.glyphicon-ok.icon-ok.check-mark

@@ -15,8 +15,7 @@ define(['text!./{{VIEW_NAME}}.json',
 		events:{},
 		elements:{ 
 			//custom action elements 
-		}, 	
-		
+		},
 		beforeRender:function(){},
 		afterRender:function(){},
 

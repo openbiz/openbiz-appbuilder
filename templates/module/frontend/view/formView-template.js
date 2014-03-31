@@ -14,8 +14,16 @@ define(['text!./{{VIEW_NAME}}.json',
 			metadata: metadata,
 			events:{},
 			beforeRender:function(){},
-			afterRender:function(){},
-
+			afterRender:function(){},{%if(VIEW_TYPE != 'addForm'){%}
+			render:function(id){
+				var self = this;
+				this.model = new dataModel({_id:id});
+				this.model.fetch({
+					success:function(){
+						openbiz.FormView.prototype.render.call(self);
+					}
+				});
+			},{%}%}
 			beforeDeleteRecord:function(){},
 			afterDeleteRecord:function(){}{% if(FUNCTIONS.length>0){ %},{% } %}
 		{% for(var i=0;i<FUNCTIONS.length;i++){ var FUNCTION = FUNCTIONS[i]; %}
