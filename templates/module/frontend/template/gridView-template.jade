@@ -1,3 +1,5 @@
+//- Openbiz App Frontend Grid Template File
+//- APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
 ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i];  %}{% 		if(typeof node.url != 'undefined' && node.url){ %}
 	li
 		a(href!="{{ node.url }}") <%= locale.breadcrumb.{{node.name}} %>{% 		} else { %}

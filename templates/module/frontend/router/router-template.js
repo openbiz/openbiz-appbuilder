@@ -1,3 +1,8 @@
+/**
+ * Openbiz App Module Frontend Router File
+ *
+ * APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
+ */
 "use strict";
 define(function(){
     return openbiz.Router.extend({		

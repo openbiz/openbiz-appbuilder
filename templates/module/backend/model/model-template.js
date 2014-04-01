@@ -1,3 +1,8 @@
+/**
+ * Openbiz App Backend Model
+ *
+ * APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
+ */
 "use strict";
 module.exports = function(app)
 {
@@ -5,7 +10,7 @@ module.exports = function(app)
     var features = {{MODEL_FEATURES}};
     var defaults = {{MODEL_META_DEFAULTS}};
     var schemaMeta = app.openbiz.ModelService.applyMetadata.call(app.openbiz,
-        app.openbiz.MetadataParser.call(app.openbiz,__filename.replace(/\.js$/i,'.json'))
+        app.openbiz.MetadataParser.call(app.openbiz,__filename.replace(/\.js$/i,'.json')).schema
         ,features,defaults)
 	{}
     var schema = new mongoose.Schema(schemaMeta,{

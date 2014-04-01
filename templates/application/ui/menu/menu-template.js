@@ -1,3 +1,10 @@
+/**
+ *
+ * Openbiz App Frontend Menu File
+ *
+ * APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
+ *
+ */
 "use strict";
 define(['text!templates/menu/{{APP_NAME_LOWERCASE}}MenuView.html'],
     function(templateData){
