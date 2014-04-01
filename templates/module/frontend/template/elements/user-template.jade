@@ -1,5 +1,5 @@
 						.form-group
-							label.control-label {{displayName}}
+							label.control-label <%= locale.{{fieldName}}%>
 							.input-icon.right
 								i.fa.fa-user.ico
 								input.form-control(name="{{selector}}",type="text"{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value != "<%= record.get('{{field}}')%>"{%}%})
