@@ -12,12 +12,6 @@ define(['./{{MODEL_NAME}}'],function(Model){
 			pageSize: 10,
 			sortKey: "_id",
 			order: 1
-		},
-		parseState: function (resp, queryParams, state, options) {
-			return {totalRecords: resp.count};
-		},
-		parseRecords: function (resp, options) {
-			return resp.items;
 		}{% if(FUNCTIONS.length>0){ %},{% } %}
 		{% for(var i=0;i<FUNCTIONS.length;i++){ var FUNCTION = FUNCTIONS[i]; %}
 		//Auto generated function

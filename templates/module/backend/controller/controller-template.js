@@ -35,7 +35,8 @@ module.exports = function(app){	{% if (BASE_CONTROLLER=='ModelController' || BAS
 		//The old record is at req.record
 		beforeDelete: function(req, res){},
 		afterDelete: function(req, res){}{% if(FUNCTIONS.length>0){ %},{% } %}
-{% }else{ %}	return app.openbiz.Controller.extend({   {% } %}
+{% }else{ %}	
+	return app.openbiz.Controller.extend({   {% } %}
 {% for(var i=0;i<FUNCTIONS.length;i++){ var FUNCTION = FUNCTIONS[i]; %}
 		//Auto generated function
 		{{FUNCTION.name}}: function(req,res){ {{FUNCTION.function}} }{% if(i<(FUNCTIONS.length-1)){ %},{% } %}
