@@ -1,3 +1,8 @@
+/**
+ * Openbiz App Module Frontend Model File
+ *
+ * APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
+ */
 "use strict";
 define(['./{{MODEL_NAME}}'],function(Model){
 	return Backbone.PageableCollection.extend({

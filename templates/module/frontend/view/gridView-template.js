@@ -1,3 +1,8 @@
+/**
+ * Openbiz App Module Frontend Grid View File
+ *
+ * APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
+ */
 "use strict";
 define(['text!./{{VIEW_NAME}}.json',
 		'text!templates/{{MODULE_NAME}}/{{VIEW_NAME}}.html',
