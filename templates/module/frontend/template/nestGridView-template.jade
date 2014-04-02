@@ -1,15 +1,16 @@
-.row
-	section.panel.wizard-form.corner-flip
+//- Openbiz App Frontend Grid Template File
+//- APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
+section.panel.wizard-form.corner-flip
+	<% if(locale.viewTitle){ %>
+	header.panel-heading
 		<% if(locale.viewTitle){ %>
-		header.panel-heading
-			<% if(locale.viewTitle){ %>
-			h2 <%= locale.viewTitle%>
-			<%}%>
-			{%if(typeof viewDescription=='string'){%}
-			p <%= locale.viewDescription%>
-			{%}%}
+		h2 <%= locale.viewTitle%>
 		<%}%>
-		.panel-body
-			.data-grid
-		.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
+		{%if(typeof viewDescription=='string'){%}
+		p <%= locale.viewDescription%>
+		{%}%}
+	<%}%>
+	.panel-body
+		.data-grid
+	.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
 {{ACTION}}{% } %}

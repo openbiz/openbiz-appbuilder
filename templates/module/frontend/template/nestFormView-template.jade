@@ -1,19 +1,20 @@
-.row
+//- Openbiz App Frontend Grid Template File
+//- APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
+<% if(locale.viewTitle){ %>
+.panel-heading
 	<% if(locale.viewTitle){ %>
-	.panel-heading
-		<% if(locale.viewTitle){ %>
-		h2 <%= locale.viewTitle%>
-		<%}%>
-		{%if(typeof viewDescription=='string'){%}
-		p <%= locale.viewDescription%>
-		{%}%}
+	h2 <%= locale.viewTitle%>
 	<%}%>
-	.panel-body
-		.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
-			.row
-				.col-md-6
+	{%if(typeof viewDescription=='string'){%}
+	p <%= locale.viewDescription%>
+	{%}%}
+<%}%>
+.panel-body
+	.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
+		.row
+			.col-md-6
 {{ELEMENT}}{% } else{%}
-				.col-md-6
+			.col-md-6
 {{ELEMENT}}{% } %}{% } %}
-		.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
+	.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
 {{ACTION}}{% } %}

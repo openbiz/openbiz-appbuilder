@@ -5,5 +5,17 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 		a(href!="{{ node.url }}") <%= locale.breadcrumb.{{node.name}} %>{% 		} else { %}
 	li.active <%= locale.breadcrumb.{{node.name}} %>{% 		} %}{% } %}
 #content
-	.row.nest-views
-		.col-md-6
+	<% if(locale.viewTitle){ %>
+	.heading
+		<% if(locale.viewTitle){ %>
+		h2 <%= locale.viewTitle%>
+		<%}%>
+		{%if(typeof viewDescription=='string'){%}
+		p <%= locale.viewDescription%>
+		{%}%}
+	<%}%>
+	.nest-views
+		{% for(var i=0;i<SUBVIEWS.length;i++){ var subview = SUBVIEWS[i]; %}
+		.row
+			div.{{subview.name}}
+				| .{{subview.placeholder}} {%}%}
