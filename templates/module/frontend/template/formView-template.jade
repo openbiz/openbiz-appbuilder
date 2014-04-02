@@ -6,11 +6,10 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 	li.active <%= locale.breadcrumb.{{node.name}} %>{% 		} %}{% } %}
 #content
 	.row
-		.panel-heading
-			h2 <%= locale.viewTitle%>
-			{%if(typeof viewDescription=='string'){%}
-			p <%= locale.viewDescription%>
-			{%}%}
+		header.panel-heading.sm
+			h2
+				strong <%= locale.viewTitle%> {%if(typeof viewDescription=='string'){%}
+				p <%= locale.viewDescription%>{%}%}
 		.panel-body
 			.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
 				.row.show-grid

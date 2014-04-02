@@ -8,11 +8,10 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 	.row
 		.col-md-12
 			section.panel.wizard-form.corner-flip
-				header.panel-heading
-					h2 <%= locale.viewTitle%>
-					{%if(typeof viewDescription=='string'){%}
-					p <%= locale.viewDescription%>
-					{%}%}
+				header.panel-heading.sm
+					h2
+						strong <%= locale.viewTitle%> {%if(typeof viewDescription=='string'){%}
+						p <%= locale.viewDescription%>{%}%}
 				.panel-body
 					.data-grid
 				.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}

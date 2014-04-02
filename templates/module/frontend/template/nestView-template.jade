@@ -6,13 +6,10 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 	li.active <%= locale.breadcrumb.{{node.name}} %>{% 		} %}{% } %}
 #content
 	<% if(locale.viewTitle){ %>
-	.heading
-		<% if(locale.viewTitle){ %>
-		h2 <%= locale.viewTitle%>
-		<%}%>
-		{%if(typeof viewDescription=='string'){%}
-		p <%= locale.viewDescription%>
-		{%}%}
+	header.panel-heading.sm
+		h2
+			strong <%= locale.viewTitle%> {%if(typeof viewDescription=='string'){%}
+			p <%= locale.viewDescription%>{%}%}
 	<%}%>
 	.nest-views
 		{% for(var i=0;i<SUBVIEWS.length;i++){ var subview = SUBVIEWS[i]; %}
