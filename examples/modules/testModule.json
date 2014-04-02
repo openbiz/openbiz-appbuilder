@@ -191,7 +191,7 @@
 				{
 					"name":"new",
 					"type":"link",
-					"url":"/tests/new",
+					"url":"/tests/add",
 					"className":"btn-theme x-large",
 					"permission":"test-info-manage"
 				},
@@ -321,7 +321,7 @@
 			"displayName":"Create a Test Record",
 			"type":"addForm",
 			"model":"Test",
-			"url":"/tests/new",
+			"url":"/tests/add",
 			"fields":[
 				{
 					"name":"name",

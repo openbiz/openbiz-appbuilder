@@ -2,13 +2,10 @@
 //- APPBUILDER_ALLOW_OVERRIDE = YES  // if you have manual modified this file please change APPBUILDER_ALLOW_OVERRIDE value to NO
 section.panel.wizard-form.corner-flip
 	<% if(locale.viewTitle){ %>
-	header.panel-heading
-		<% if(locale.viewTitle){ %>
-		h2 <%= locale.viewTitle%>
-		<%}%>
-		{%if(typeof viewDescription=='string'){%}
-		p <%= locale.viewDescription%>
-		{%}%}
+	header.panel-heading.sm
+		h2
+			strong <%= locale.viewTitle%> {%if(typeof viewDescription=='string'){%}
+			p <%= locale.viewDescription%>{%}%}
 	<%}%>
 	.panel-body
 		.data-grid
