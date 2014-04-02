@@ -4,15 +4,12 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 	li
 		a(href!="{{ node.url }}") <%= locale.breadcrumb.{{node.name}} %>{% 		} else { %}
 	li.active <%= locale.breadcrumb.{{node.name}} %>{% 		} %}{% } %}
-#content
-	<% if(locale.viewTitle){ %>
+#content<% if(locale.viewTitle){ %>
 	header.panel-heading.sm
 		h2
 			strong <%= locale.viewTitle%> {%if(typeof viewDescription=='string'){%}
-			p <%= locale.viewDescription%>{%}%}
-	<%}%>
-	.nest-views
-		{% for(var i=0;i<SUBVIEWS.length;i++){ var subview = SUBVIEWS[i]; %}
+			p <%= locale.viewDescription%>{%}%}<%}%>
+	.nest-views{% for(var i=0;i<SUBVIEWS.length;i++){ var subview = SUBVIEWS[i]; %}
 		.row
 			div.{{subview.name}}
 				| .{{subview.placeholder}} {%}%}
