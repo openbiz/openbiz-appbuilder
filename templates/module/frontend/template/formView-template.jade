@@ -12,7 +12,7 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 					p <%= locale.viewDescription%>{%}%}<%}%>
 		.panel-body
 			.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
-				.row.show-grid
+				.row.vogdata-show-grid
 					.col-md-6
 {{ELEMENT}}{% } else{%}
 					.col-md-6
