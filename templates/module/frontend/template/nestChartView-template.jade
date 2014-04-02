@@ -11,6 +11,7 @@ section.panel.corner-flip
 		{%}%}
 	<%}%>
 	.panel-body
-		.chart
+		.openbiz-chart
+	{% if(ACTIONS.length>0){ %}
 	.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
-{{ACTION}}{% } %}
+{{ACTION}}{% } %}{% } %}

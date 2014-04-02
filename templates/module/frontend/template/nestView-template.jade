@@ -11,6 +11,6 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 			p <%= locale.viewDescription%>{%}%} <%}%>
 	.nest-views
 		{% for(var i=0;i<SUBVIEWS.length;i++){ var subview = SUBVIEWS[i]; %}
-		.row
+		.col-lg-12.col-md-12.view-block
 			div.{{subview.name}}
-				| .{{subview.placeholder}} {%}%}
+				| {{subview.placeholder}} {%}%}

@@ -5,18 +5,18 @@
  */
 "use strict";
 define(['text!./{{VIEW_NAME}}.json',
-		'text!templates/{{MODULE_NAME}}/{{VIEW_NAME}}.html',
-		'../models/{{MODEL_NAME}}'
-		/*CUSTOM_ELEMNT_CLASSES*/],
-	function(metadata,templateData,dataCollection){
+	'text!templates/{{MODULE_NAME}}/{{VIEW_NAME}}.html',
+	'../models/{{MODEL_NAME}}'
+	/*CUSTOM_ELEMNT_CLASSES*/],
+	function(metadata,templateData,dataModel){
 	return openbiz.charts.PieChartView.extend({
 		app: '{{APP_NAME}}',
         module:'{{MODULE_NAME}}',
 		name: '{{VIEW_NAME}}',
 		el: '{{VIEW_EL}}',
-		collection: dataCollection,
 		template: templateData,
-		metadata: metadata,		
+		metadata: metadata,	
+		model: dataModel,	
 		events:{},
 		beforeRender:function(){},
 		afterRender:function(){},
