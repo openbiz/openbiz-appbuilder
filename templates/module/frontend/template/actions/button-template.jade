@@ -1,2 +1,3 @@
-					button.btn{{selector}}{{className}}
+					button.btn{{selector}}{{className}}(style="margin-right:10px")
+						{% if(typeof icon!='undefined'){ %}i{{icon}} {% } %}
 						| <%= locale.{{localeName}}%>
