@@ -1,5 +1,0 @@
-						.form-group
-							label.control-label <%= locale.{{fieldName}}%>
-							span.input-group-addon ¥
-							input.form-control(name="{{selector}}",type="text"{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value != "<%= record.get('{{field}}')%>"{%}%})
-							span.input-group-addon .00
