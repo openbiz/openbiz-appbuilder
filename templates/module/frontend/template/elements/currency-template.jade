@@ -1,6 +1,6 @@
-							.form-group
-								label.control-label <%= locale.{{fieldName}}%>
-								.input-group
-									span.input-group-addon <%= locale.app.currencySymbol %>
-									input.form-control(name="{{selector}}",type="text"{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value!="<%= record.get('{{field}}')%>"{%}%})
-									span.input-group-addon .00
+								.form-group
+									label.control-label <%= locale.{{fieldName}}%>
+									.input-group
+										span.input-group-addon <%= locale.app.currencySymbol %>
+										input.form-control(name="{{selector}}",type="text"{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value!="<%= record.get('{{field}}')%>"{%}%})
+										span.input-group-addon .00
