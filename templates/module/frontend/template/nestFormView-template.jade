@@ -5,12 +5,12 @@ header.panel-heading.sm
 	h2
 		strong <%= locale.viewTitle%> {%if(typeof viewDescription=='string'){%}
 		p <%= locale.viewDescription%>{%}%}<%}%>
-.panel-body
-	.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
-		.row.vogdata-show-grid
-			.col-md-6
+	.panel-body
+		.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
+			.row.vogdata-show-grid
+				.col-md-6
 {{ELEMENT}}{% } else{%}
-			.col-md-6
+				.col-md-6
 {{ELEMENT}}{% } %}{% } %}
 	.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
 {{ACTION}}{% } %}
