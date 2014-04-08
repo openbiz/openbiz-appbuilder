@@ -5,18 +5,19 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 		a(href!="{{ node.url }}") <%= locale.breadcrumb.{{node.name}} %>{% 		} else { %}
 	li.active <%= locale.breadcrumb.{{node.name}} %>{% 		} %}{% } %}
 #content
-	.row<% if(locale.viewTitle){ %>
+	.row
 		.col-lg-12
-			header.panel-heading.sm
-				h2
-					strong <%= locale.viewTitle%> {%if(typeof viewDescription=='string'){%}
-						p <%= locale.viewDescription%>{%}%}<%}%>
-			.panel-body
-				form.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
-					.row.vogdata-show-grid
-						.col-md-6
-	{{ELEMENT}}{% } else{%}
-						.col-md-6
-	{{ELEMENT}}{% } %}{% } %}
-			.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
-	{{ACTION}}{% } %}
+			section.panel<% if(locale.viewTitle){ %>
+				header.panel-heading.sm
+					h2
+						strong <%= locale.viewTitle%> {%if(typeof viewDescription=='string'){%}
+							p <%= locale.viewDescription%>{%}%}<%}%>
+				.panel-body
+					form.form.record-form(role="form",parsley-validate,novalidate='novalidate'){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
+						.row.vogdata-show-grid
+							.col-md-6
+{{ELEMENT}}{% } else{%}
+							.col-md-6
+{{ELEMENT}}{% } %}{% } %}
+				.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
+{{ACTION}}{% } %}
