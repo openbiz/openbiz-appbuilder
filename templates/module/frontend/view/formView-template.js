@@ -29,8 +29,11 @@ define(['text!./{{VIEW_NAME}}.json',
 					}
 				});
 			},{%}%}
+			saveRecordSuccess:function(){},
+			saveRecordError:function(){},
 			beforeDeleteRecord:function(){},
-			afterDeleteRecord:function(){}{% if(FUNCTIONS.length>0){ %},{% } %}
+			deleteRecordSuccess:function(){},
+			deleteRecordError:function(){}{% if(FUNCTIONS.length>0){ %},{% } %}
 		{% for(var i=0;i<FUNCTIONS.length;i++){ var FUNCTION = FUNCTIONS[i]; %}
 			//Auto generated function
 			{{FUNCTION.name}}: function({{FUNCTION.parameters}}){ {{FUNCTION.function}} }{% if(i<(FUNCTIONS.length-1)){ %},{% } %}{% } %}
