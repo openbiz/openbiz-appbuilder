@@ -1,7 +1,7 @@
 						.{{selector}}
 							label.control-label <%= locale.{{fieldName}}%>
 							.input-group.date.form_datetime(data-date-format='yyyy-MM-dd', data-picker-position='bottom-left')
-								input.form-control(name="{{selector}}",type='text'{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value!="<%= moment(record.get('{{field}}')).format('YYYY-MM-DD')%>"{%}else{%},value='{{momentDate}}' {%}%})
+								input.form-control(name="{{selector}}",type='text'{% if(typeof validation != 'undefined' && validation){%},{{validation}}{%}%}{% if(showField){%},value!="<%= moment(record.get('{{field}}')).format('YYYY-MM-DD')%>"{%}else{%},value!="<%= moment(new Date()).format('YYYY-MM-DD') %>"{%}%})
 								span.input-group-btn
 									button.btn.btn-default(type='button')
 										i.fa.fa-calendar
