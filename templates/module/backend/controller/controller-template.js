@@ -16,18 +16,19 @@ module.exports = function(app){	{% if (BASE_CONTROLLER=='ModelController' || BAS
 
 		//trigger method for data collection fetch
 		//The fetched records is at req.recordCollection
-		beforeGetCollection: function(req, res){},
+		beforeGetCollection: function(req, res, next){next();},
+		beforeQueryCollection: function(query){return query;},
 		afterGetCollection: function(req, res){},	
 
 		//trigger method for data create
 		//The created record is at req.record
-		beforeCreate: function(req, res){},
+		beforeCreate: function(req, res, next){next();},
 		afterCreate: function(req, res){},
 
 		//trigger method for data update
 		//The old record is at req.record
 		//The new record is at req.recordNew
-		beforeUpdate: function(req, res){},
+		beforeUpdate: function(req, res, next){next();},
 		afterUpdate: function(req, res){},
 		
 
