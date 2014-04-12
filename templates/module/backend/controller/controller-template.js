@@ -11,7 +11,7 @@ module.exports = function(app){	{% if (BASE_CONTROLLER=='ModelController' || BAS
 		{% if (BASE_CONTROLLER=='ModelSubdocController'){ %}_path: "{{MODEL_PATH}}",{% } %}
 		//trigger method for data collection get
 		//The fetched record is at req.record
-		beforeGetItem: function(req, res){},
+		beforeGetItem: function(req, res, next){next();},
 		afterGetItem: function(req, res){},
 
 		//trigger method for data collection fetch
