@@ -20,4 +20,4 @@ ol.breadcrumb{% for(var i=0;i<BREADCRUMB.length;i++){ var node = BREADCRUMB[i]; 
 							.col-md-6
 {{ELEMENT}}{% } %}{% } %}
 				.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
-{{ACTION}}{% } %}
+					{{ACTION.selector}}{% } %}
