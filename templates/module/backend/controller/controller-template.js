@@ -17,8 +17,8 @@ module.exports = function(app){	{% if (BASE_CONTROLLER=='ModelController' || BAS
 		//trigger method for data collection fetch
 		//The fetched records is at req.recordCollection
 		beforeGetCollection: function(req, res, next){next();},
-		beforeQueryCollection: function(query){return query;},
-		afterGetCollection: function(req, res){},	
+		beforeQueryCollection: function(req,query){return query;},
+		afterGetCollection: function(req, res,next){next();},
 
 		//trigger method for data create
 		//The created record is at req.record

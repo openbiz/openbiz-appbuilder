@@ -19,7 +19,7 @@ define(['text!./{{VIEW_NAME}}.json',
 			metadata: metadata,
 			events:{},
 			beforeRender:function(){},
-			afterRender:function(){},{%if(VIEW_TYPE != 'addFormView'){%}
+			afterRender:function(){},{%if(VIEW_TYPE != 'addFormView' && VIEW_TYPE != 'addForm'){%}
 			render:function(id){
 				var self = this;
 				this.model = new dataModel({_id:id});
