@@ -9,8 +9,8 @@ header.panel-heading.sm
 		.form.record-form(role="form",parsley-validate){% for(var i=0;i<ELEMENTS.length;i++) { var ELEMENT = ELEMENTS[i];  if((parseInt(i)%2)==0){%}
 			.row.vogdata-show-grid
 				.col-md-6
-{{ELEMENT}}{% } else{%}
+					{{ELEMENT.selector}}{% } else{%}
 				.col-md-6
-{{ELEMENT}}{% } %}{% } %}
+					{{ELEMENT.selector}}{% } %}{% } %}
 	.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
 		{{ACTION.selector}}{% } %}
