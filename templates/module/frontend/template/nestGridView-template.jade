@@ -8,4 +8,4 @@ section.panel.wizard-form.corner-flip<% if(locale.viewTitle){ %>
 	.panel-body
 		.data-grid
 	.panel-footer{% for(var i=0;i<ACTIONS.length;i++) { var ACTION = ACTIONS[i];  %}
-{{ACTION}}{% } %}
+		{{ACTION.selector}}{% } %}
